@@ -50,20 +50,20 @@ const NavBar: React.FunctionComponent<INavBarProps> = (props) => {
             <path
               d="M3 7H21"
               stroke="#292D32"
-              stroke-width="2"
-              stroke-linecap="round"
+              strokeWidth="2"
+              strokeLinecap="round"
             />
             <path
               d="M3 12H21"
               stroke="#292D32"
-              stroke-width="2"
-              stroke-linecap="round"
+              strokeWidth="2"
+              strokeLinecap="round"
             />
             <path
               d="M3 17H21"
               stroke="#292D32"
-              stroke-width="2"
-              stroke-linecap="round"
+              strokeWidth="2"
+              strokeLinecap="round"
             />
           </svg>
         </a>
