@@ -65,11 +65,11 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
               />
             </div>
           </div>
-          <form action="" className="w-4/5">
+          <form action="" className="w-4/5 space-y-10">
             {passengers.map((type, id) => (
               <PassegerInput id={id} key={id} type={type} />
             ))}
-            <div className="flex justify-center mt-5">
+            <div className="flex justify-center">
               <div className="flex items-center space-x-2">
                 <Checkbox
                   id="terms"
@@ -84,7 +84,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
                 </label>
               </div>
             </div>
-            <Button className="w-full mt-5" disabled={!isChecked}>
+            <Button className="w-full" disabled={!isChecked}>
               Bayar Sekarang
             </Button>
           </form>
