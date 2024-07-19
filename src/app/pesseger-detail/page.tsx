@@ -89,8 +89,8 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
             </Button>
           </form>
         </div>
-        <div className="grid grid-rows-1 gap-y-5 h-min">
-          <div className="p-8 flex flex-col bg-[#0578FF]/10 rounded-[30px] w-full">
+        <div className="">
+          <div className="p-8 flex flex-col bg-white shadow-lg rounded-[30px]">
             <h3>Detail Keberangkatan</h3>
             <div className="flex justify-between">
               <div className="flex items-center">
@@ -116,7 +116,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
                   </div>
                   <div className="space-y-2">
                     <svg
-                      width="542"
+                      className="w-full"
                       height="6"
                       viewBox="0 0 542 6"
                       fill="none"
@@ -150,7 +150,6 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
                 </AlertDescription>
               </div>
             </Alert>
-            <Separator className="w-full" />
             <div className="flex justify-between mt-8">
               <p className="text-lg">Total Harga</p>
               <h2 className="text-xl text-[#D61355] font-semibold">
