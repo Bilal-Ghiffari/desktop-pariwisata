@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { AuthLoginSchema, AuthSchema } from "./validation";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation as Mutation } from "@tanstack/react-query";
 import { create } from "./http";
 import { useRouter } from "next/navigation";
 
 function mutationRegisterLogin(path: string) {
-  return useMutation({
+  return Mutation({
     mutationFn: async (val: any) => {
       const res = await create(path, val);
       return res;
