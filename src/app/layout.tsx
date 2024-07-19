@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "./components/containers/navbar";
 import Footers from "./components/containers/footers";
 import QueryProvider from "./provider/query-provider";
+import StoreProvider from "./provider/store-provider";
 
 const inter = DM_Sans({ subsets: ["latin"] });
 
@@ -19,16 +20,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className}`}>
         {/* <div className="container mx-auto">
           <NavBar />
           <QueryProvider>{children}</QueryProvider>
           </div>
           <Footers /> */}
-        <QueryProvider>
-          {children}
-          <Footers />
-        </QueryProvider>
+        <StoreProvider>
+          <QueryProvider>
+            {children}
+            <div className="">
+              <Footers />
+            </div>
+          </QueryProvider>
+        </StoreProvider>
       </body>
     </html>
   );
