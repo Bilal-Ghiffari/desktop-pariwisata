@@ -9,7 +9,8 @@ export enum FilterActionKind {
 type FilterState = {
   departure: string | null;
   arrival: string | null;
-  date: string | null;
+  leavingDate: string | null;
+  returnDate: string | null;
   passeger: number;
   adultQuantity: number;
   childQuantity: number;
@@ -18,7 +19,8 @@ type FilterState = {
 const initialState: FilterState = {
   departure: "",
   arrival: "",
-  date: new Date(Date.now()).toISOString(),
+  leavingDate: new Date(Date.now()).toISOString(),
+  returnDate: "",
   passeger: 0,
   adultQuantity: 1,
   childQuantity: 0,
@@ -29,10 +31,12 @@ const boatFilterSlice = createSlice({
   initialState,
   reducers: {
     searchBoat(state, action: PayloadAction<Partial<FilterState>>) {
-      const { departure, arrival, date, passeger } = action.payload;
+      const { departure, arrival, leavingDate, returnDate, passeger } =
+        action.payload;
       state.departure = departure ?? state.departure;
       state.arrival = arrival ?? state.arrival;
-      state.date = date ?? state.date;
+      state.leavingDate = leavingDate ?? state.leavingDate;
+      state.returnDate = returnDate ?? state.returnDate;
       state.passeger = passeger ?? state.passeger;
     },
     updateQuantities(state, action: PayloadAction<Partial<FilterState>>) {

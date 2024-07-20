@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import {
   Select,
@@ -34,6 +36,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/store";
 import { searchBoat, updateQuantities } from "@/lib/features/boatfilterSlice";
 import { useFiltersBoatActions } from "@/services/filter-boat/state";
+import { Switch } from "@/components/ui/switch";
 
 interface ICardFilterBoatProps {}
 
@@ -43,6 +46,15 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
   const dispatch = useDispatch<AppDispatch>();
   const state = useSelector((state: RootState) => state.boatFilter);
   const { handleOnSubmit } = useFiltersBoatActions();
+  const [isSwitch, setIsSwitch] = React.useState<boolean>(false);
+  const handleSwitchButton = React.useCallback(() => {
+    if (isSwitch) {
+      dispatch(searchBoat({ returnDate: "" }));
+    }
+    setIsSwitch(!isSwitch);
+  }, [isSwitch]);
+
+  console.log(state);
   return (
     <div className="max-w-4xl relative z-20 mx-auto mt-10 bg-white shadow-lg rounded-lg p-6 transform -translate-x-6 -translate-y-[13.5rem] top-5 drop-shadow-lg">
       <div className="flex mb-4">
@@ -63,7 +75,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                stroke-width="2"
+                strokeWidth="2"
                 d="M3 10h3l3 9 3-18 3 12h3"
               />
             </svg>
@@ -76,7 +88,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
               }
               value={state.departure || ""}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-full shadow-none">
                 <SelectValue placeholder="Berangkat" />
               </SelectTrigger>
               <SelectContent>
@@ -105,7 +117,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                stroke-width="2"
+                strokeWidth="2"
                 d="M3 10h3l3 9 3-18 3 12h3"
               />
             </svg>
@@ -118,7 +130,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
               }
               value={state.arrival || ""}
             >
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-full shadow-none">
                 <SelectValue placeholder="Tujuan" />
               </SelectTrigger>
               <SelectContent>
@@ -164,12 +176,12 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
             </svg>
           </div>
           <div>
-            <div className="text-sm text-gray-500">Pilih Tanggal</div>
+            <div className="text-sm text-gray-500">Pilih Tanggal Pergi</div>
             <Popover>
               <PopoverTrigger asChild>
                 <div className="text-lg">
-                  {state.date ? (
-                    dateFormat(state.date, "DD MMM YYYY")
+                  {state.leavingDate ? (
+                    dateFormat(state.leavingDate, "DD MMM YYYY")
                   ) : (
                     <span>
                       {dateFormat(new Date(Date.now()), "DD MMM YYYY")}
@@ -181,14 +193,103 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
                 <Calendar
                   mode="single"
                   selected={
-                    state.date ? new Date(state.date) : new Date(Date.now())
+                    state.leavingDate
+                      ? new Date(state.leavingDate)
+                      : new Date(Date.now())
                   }
                   onSelect={(day: any) => {
                     if (day) {
-                      dispatch(searchBoat({ date: day.toISOString() }));
+                      dispatch(searchBoat({ leavingDate: day.toISOString() }));
                     }
                   }}
                   disabled={(date) => date < new Date(Date.now())}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
+          <div className="ml-auto text-center space-y-3">
+            <p className="text-gray-400/45 text-[15px]">Pulang Pergi</p>
+            <Switch
+              id="add as passenger"
+              checked={isSwitch}
+              onCheckedChange={handleSwitchButton}
+            />
+          </div>
+        </div>
+        <div
+          className={cn([
+            "flex items-center bg-white p-4 rounded-lg shadow-sm",
+            !isSwitch && "hidden",
+          ])}
+        >
+          <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mr-4">
+            <svg
+              width="42"
+              height="43"
+              viewBox="0 0 42 43"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect y="0.5" width="42" height="42" rx="12" fill="#E8EDFF" />
+              <g clipPath="url(#clip0_1_68)">
+                <path
+                  d="M17.3333 20.2777H14.8889V22.7222H17.3333V20.2777ZM22.2222 20.2777H19.7778V22.7222H22.2222V20.2777ZM27.1111 20.2777H24.6667V22.7222H27.1111V20.2777ZM29.5556 11.7222H28.3333V9.27771H25.8889V11.7222H16.1111V9.27771H13.6667V11.7222H12.4444C11.0878 11.7222 10.0122 12.8222 10.0122 14.1666L10 31.2777C10 32.6222 11.0878 33.7222 12.4444 33.7222H29.5556C30.9 33.7222 32 32.6222 32 31.2777V14.1666C32 12.8222 30.9 11.7222 29.5556 11.7222ZM29.5556 31.2777H12.4444V17.8333H29.5556V31.2777Z"
+                  fill="#3258E8"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_1_68">
+                  <rect
+                    width="32"
+                    height="32"
+                    fill="white"
+                    transform="translate(5 5.5)"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <div>
+            <div className="text-sm text-gray-500">Pilih Tanggal Pulang</div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <div className="text-lg">
+                  {state.returnDate ? (
+                    dateFormat(state.returnDate, "DD MMM YYYY")
+                  ) : (
+                    <span>
+                      {dateFormat(
+                        new Date(
+                          state.leavingDate ? state.leavingDate : Date.now()
+                        ),
+                        "DD MMM YYYY"
+                      )}
+                    </span>
+                  )}
+                </div>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={
+                    state.returnDate
+                      ? new Date(state.returnDate)
+                      : new Date(
+                          state.leavingDate ? state.leavingDate : Date.now()
+                        )
+                  }
+                  onSelect={(day: any) => {
+                    if (day) {
+                      dispatch(searchBoat({ returnDate: day.toISOString() }));
+                    }
+                  }}
+                  disabled={(date) => {
+                    const leaveDate = new Date(
+                      state.leavingDate ? state.leavingDate : Date.now()
+                    );
+                    return date <= leaveDate;
+                  }}
                   initialFocus
                 />
               </PopoverContent>
@@ -207,7 +308,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                stroke-width="2"
+                strokeWidth="2"
                 d="M5.121 17.121A3 3 0 017.536 18H16.464a3 3 0 012.415-1.415l2.121-2.121M12 3v12m-6 6h12"
               />
             </svg>
@@ -270,7 +371,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
                           </defs>
                         </svg>
                       </button>
-                      <span className="text-lg font-semibold flex items-center">
+                      <span className="text-lg font-semibold flex items-center w-3">
                         {state.adultQuantity}
                       </span>
                       <button
@@ -346,6 +447,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
                           </g>
                           <defs>
                             <clipPath id="clip0_4427_9165">
+                              re{" "}
                               <rect
                                 width="24"
                                 height="24"
@@ -356,15 +458,10 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
                           </defs>
                         </svg>
                       </button>
-                      <span className="text-lg font-semibold flex items-center">
+                      <span className="text-lg font-semibold flex items-center w-3">
                         {state.childQuantity}
                       </span>
                       <button
-                        disabled={
-                          state.childQuantity >= state.adultQuantity
-                            ? true
-                            : false
-                        }
                         onClick={() =>
                           dispatch(
                             updateQuantities({
@@ -433,7 +530,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              stroke-width="2"
+              strokeWidth="2"
               d="M3 10h3l3 9 3-18 3 12h3"
             />
           </svg>
