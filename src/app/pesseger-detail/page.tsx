@@ -36,6 +36,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
 ) => {
   const { isSwitch, handleSwitchChange, passengers } = usePassengerContext();
   const [isChecked, isSetIsChecked] = React.useState<boolean>(false);
+  console.log(passengers);
   return (
     <div className="container mx-auto">
       <NavBar />
@@ -67,7 +68,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
           </div>
           <form action="" className="w-4/5 space-y-10">
             {passengers.map((type, id) => (
-              <PassegerInput id={id} key={id} type={type} />
+              <PassegerInput key={id} type={type} id={id} />
             ))}
             <div className="flex justify-center">
               <div className="flex items-center space-x-2">

@@ -40,6 +40,7 @@ const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
   const { isSwitch, setCountry, country, passengerTypes, handleTypeChange } =
     usePassengerContext();
   const { passeger } = useSelector((state: RootState) => state);
+  console.log("country", country);
   return (
     <div className="">
       <div className="flex flex-col space-x-2 border border-gray-200">
@@ -80,7 +81,7 @@ const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
                 type="text"
                 className="px-[16px] py-4 h-12 rounded-[8px] border border-[#999999] focus:outline-none"
                 placeholder="IC Nomor"
-                name="icNomor"
+                name="IcNomor"
               />
             ) : (
               <input
@@ -99,8 +100,11 @@ const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="dewasa">Dewasa</SelectItem>
-                  <SelectItem value="bayi">Bayi</SelectItem>
+                  {type === "Dewasa" ? (
+                    <SelectItem value="dewasa">Dewasa</SelectItem>
+                  ) : (
+                    <SelectItem value="bayi">Bayi</SelectItem>
+                  )}
                 </SelectGroup>
               </SelectContent>
             </Select>

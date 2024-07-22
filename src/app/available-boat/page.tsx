@@ -52,15 +52,16 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
       </h3>
       <div className="grid grid-rows-1 grid-cols-3 gap-x-10 mb-10">
         <div className="grid grid-rows-1 col-span-1 gap-y-5 h-min">
-          <div className="border py-8 px-6 space-y-8 rounded-2xl shadow-md">
+          <div className="border py-8 px-6 rounded-2xl shadow-md">
             <div className="grid grid-cols-2 gap-5">
-              <div>
-                <div className="text-sm text-gray-500">Berangkat</div>
+              <div className="rounded-lg shadow-sm p-4 bg-gray-300/10">
+                <div className="text-sm text-gray-400">Berangkat</div>
                 <Select
                   onValueChange={(val: string) =>
                     dispatch(searchBoat({ departure: val }))
                   }
                   value={state.departure || ""}
+                  disabled={true}
                 >
                   <SelectTrigger className="w-full shadow-none">
                     <SelectValue placeholder="Berangkat" />
@@ -84,13 +85,14 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
                   </SelectContent>
                 </Select>
               </div>
-              <div>
+              <div className="rounded-lg sshadow-sm hadow-sm p-4 bg-gray-300/10">
                 <div className="text-sm text-gray-500">Tujuan</div>
                 <Select
                   onValueChange={(val: string) =>
                     dispatch(searchBoat({ arrival: val }))
                   }
                   value={state.arrival || ""}
+                  disabled={true}
                 >
                   <SelectTrigger className="w-full shadow-none">
                     <SelectValue placeholder="Tujuan" />
@@ -115,38 +117,105 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
                 </Select>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <div className="text-sm text-gray-500">Pilih Tanggal</div>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <div className="text-lg">
-                      {state.date ? (
-                        dateFormat(state.date, "DD MMM YYYY")
-                      ) : (
-                        <span>
-                          {dateFormat(new Date(Date.now()), "DD MMM YYYY")}
-                        </span>
-                      )}
-                    </div>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={
-                        state.date ? new Date(state.date) : new Date(Date.now())
-                      }
-                      onSelect={(day: Date | undefined) => {
-                        if (day) {
-                          dispatch(searchBoat({ date: day.toISOString() }));
+            <div className="grid grid-cols-2 gap-5">
+              <div className="flex items-center p-4 rounded-lg shadow-sm">
+                <div>
+                  <div className="text-sm text-gray-500">
+                    Pilih Tanggal Pergi
+                  </div>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <div className="text-lg">
+                        {state.leavingDate ? (
+                          dateFormat(state.leavingDate, "DD MMM YYYY")
+                        ) : (
+                          <span>
+                            {dateFormat(new Date(Date.now()), "DD MMM YYYY")}
+                          </span>
+                        )}
+                      </div>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={
+                          state.leavingDate
+                            ? new Date(state.leavingDate)
+                            : new Date(Date.now())
                         }
-                      }}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+                        onSelect={(day: any) => {
+                          if (day) {
+                            dispatch(
+                              searchBoat({ leavingDate: day.toISOString() })
+                            );
+                          }
+                        }}
+                        disabled={(date) => date < new Date(Date.now())}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
               </div>
-              <div>
+              {state.returnDate && (
+                <div className="flex items-center p-4 rounded-lg shadow-sm">
+                  <div>
+                    <div className="text-sm text-gray-500">
+                      Pilih Tanggal Pulang
+                    </div>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <div className="text-lg">
+                          {state.returnDate ? (
+                            dateFormat(state.returnDate, "DD MMM YYYY")
+                          ) : (
+                            <span>
+                              {dateFormat(
+                                new Date(
+                                  state.leavingDate
+                                    ? state.leavingDate
+                                    : Date.now()
+                                ),
+                                "DD MMM YYYY"
+                              )}
+                            </span>
+                          )}
+                        </div>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={
+                            state.returnDate
+                              ? new Date(state.returnDate)
+                              : new Date(
+                                  state.leavingDate
+                                    ? state.leavingDate
+                                    : Date.now()
+                                )
+                          }
+                          onSelect={(day: any) => {
+                            if (day) {
+                              dispatch(
+                                searchBoat({ returnDate: day.toISOString() })
+                              );
+                            }
+                          }}
+                          disabled={(date) => {
+                            const leaveDate = new Date(
+                              state.leavingDate ? state.leavingDate : Date.now()
+                            );
+                            return date <= leaveDate;
+                          }}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                </div>
+              )}
+
+              <div className="rounded-lg sshadow-sm hadow-sm p-4">
                 <div className="text-sm text-gray-500">Penumpang</div>
                 <Dialog>
                   <DialogTrigger asChild>
@@ -375,7 +444,7 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
                 </Dialog>
               </div>
             </div>
-            <Button className="w-full" onClick={handleSubmit}>
+            <Button className="w-full mt-7" onClick={handleSubmit}>
               Cari Lagi
             </Button>
           </div>

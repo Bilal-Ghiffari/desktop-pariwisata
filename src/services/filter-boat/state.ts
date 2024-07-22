@@ -1,37 +1,45 @@
 "use client";
 
-import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { toast } from "@/components/ui/use-toast";
 import { RootState } from "@/lib/store";
-import { useEffect, useRef, useState } from "react";
-import { create } from "./http";
-import { redirect } from "next/navigation";
 import { objectToParams } from "@/utils";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import { create } from "./http";
 
 export const useFiltersBoatActions = () => {
   const state = useSelector((state: RootState) => state.boatFilter);
   const queryParams = objectToParams(state);
   const router = useRouter();
 
-  // const { data, isLoading, error, refetch } = useQuery({
-  //   queryKey: ["boats-list", state],
-  //   queryFn: () => create("/api/boats", state),
-  //   enabled: false, // Prevent automatic query on mount
-  // });
-
-  // useEffect(() => {
-  //   // Update the URL without adding a new entry to the history stack
-  //   const url = `/available-boat?${queryParams}`;
-  //   router.replace(url);
-  // }, [state, queryParams, router]);
+  const { data, isLoading, refetch, error } = useQuery({
+    queryKey: ["boats-list", state],
+    queryFn: () => create("/api/boats", state),
+    enabled: false, // Prevent automatic query on mount
+  });
 
   const handleOnSubmit = () => {
     // Refetch the data when handleOnSubmit is called
     // refetch
-    const url = `/available-boat?${queryParams}`;
-    router.push(url);
+    if (state.departure && state.arrival !== "") {
+      refetch();
+      if (error === null) {
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "Terjadi kesalahan saat mencari kapal. Coba lagi nanti.",
+        });
+      } else {
+        router.push(`/available-boat?${queryParams}`);
+      }
+    } else {
+      toast({
+        variant: "default",
+        title: "Pilih Destinasi dulu Yuk!!",
+        description: "Mau pergi kemana? Pilih destinasimu sebelum cari kapal",
+      });
+    }
   };
 
   const handleSubmit = () => {
@@ -43,8 +51,8 @@ export const useFiltersBoatActions = () => {
   return {
     handleOnSubmit,
     handleSubmit,
-    // data,
-    // isLoading,
+    data,
+    isLoading,
     // error,
   };
 };
