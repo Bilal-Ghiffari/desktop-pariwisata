@@ -158,6 +158,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
               </h2>
             </div>
           </div>
+          <div className="border border-gray-400 "></div>
         </div>
       </div>
     </div>

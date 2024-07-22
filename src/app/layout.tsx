@@ -5,6 +5,7 @@ import NavBar from "./components/containers/navbar";
 import Footers from "./components/containers/footers";
 import QueryProvider from "./provider/query-provider";
 import StoreProvider from "./provider/store-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = DM_Sans({ subsets: ["latin"] });
 
@@ -34,6 +35,7 @@ export default function RootLayout({
             </div>
           </QueryProvider>
         </StoreProvider>
+        <Toaster />
       </body>
     </html>
   );
