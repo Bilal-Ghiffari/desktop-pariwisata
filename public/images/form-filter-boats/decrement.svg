@@ -1,0 +1,29 @@
+
+
+                        <svg
+                          width="40"
+                          height="40"
+                          viewBox="0 0 40 40"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect width="40" height="40" rx="8" fill="#D9D9D9" />
+                          <g clipPath="url(#clip0_4427_9165)">
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M27 21H13C12.45 21 12 20.55 12 20C12 19.45 12.45 19 13 19H27C27.55 19 28 19.45 28 20C28 20.55 27.55 21 27 21Z"
+                              fill="#999999"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_4427_9165">
+                              <rect
+                                width="24"
+                                height="24"
+                                fill="white"
+                                transform="translate(8 8)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
