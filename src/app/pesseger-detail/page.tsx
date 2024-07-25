@@ -22,6 +22,7 @@ import { usePassengerContext } from "@/services/passeger-detail/PassengerContext
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface IPassegerDetailsProps {}
 
@@ -36,6 +37,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
 ) => {
   const { isSwitch, handleSwitchChange, passengers } = usePassengerContext();
   const [isChecked, isSetIsChecked] = React.useState<boolean>(false);
+  const router = useRouter();
   console.log(passengers);
   return (
     <div className="container mx-auto">
@@ -66,7 +68,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
               />
             </div>
           </div>
-          <form action="" className="w-4/5 space-y-10">
+          <form className="w-4/5 space-y-10">
             {passengers.map((type, id) => (
               <PassegerInput key={id} type={type} id={id} />
             ))}
@@ -85,7 +87,12 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
                 </label>
               </div>
             </div>
-            <Button className="w-full" disabled={!isChecked}>
+            <Button
+              onClick={() => router.replace("/checkout")}
+              className="w-full"
+              type="button"
+              disabled={!isChecked}
+            >
               Bayar Sekarang
             </Button>
           </form>
@@ -154,11 +161,36 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
             <div className="flex justify-between mt-8">
               <p className="text-lg">Total Harga</p>
               <h2 className="text-xl text-[#D61355] font-semibold">
-                IDR 84.000
+                IDR 150.000
               </h2>
             </div>
           </div>
-          <div className="border border-gray-400 "></div>
+          <div className="bg-gray-300/20 rounded-xl p-7 mt-10">
+            <h2 className="text-xl mb-10">Order Sumary</h2>
+            <div className="flex justify-between">
+              <div className="space-y-4">
+                <h2>Harga Tiket</h2>
+                <h2>Jumlah Tiket</h2>
+                <h2>Biaya Admin</h2>
+                <h2>Biaya Applikasi</h2>
+              </div>
+              <div className="space-y-4 font-bold">
+                <h2>IDR 150.000</h2>
+                <h2>1</h2>
+                <h2>IDR 5.000</h2>
+                <h2>IDR 2.000</h2>
+              </div>
+            </div>
+            <Separator className="my-5" />
+            <div className="flex justify-between">
+              <div>
+                <h2>Total</h2>
+              </div>
+              <div>
+                <h2>IDR 157.000</h2>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
