@@ -30,9 +30,7 @@ export default function RootLayout({
         <StoreProvider>
           <QueryProvider>
             {children}
-            <div className="">
-              <Footers />
-            </div>
+            <div className="mt-10">{/* <Footers /> */}</div>
           </QueryProvider>
         </StoreProvider>
         <Toaster />

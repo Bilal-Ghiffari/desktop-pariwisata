@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 
 export const dateFormat = (
   date: Date | string,
-  format = "DD MMM YYYY HH:mm"
+  format = "ddd DD MMM YYYY HH:mm"
 ) => {
   if (!date) {
     return "date not found";
