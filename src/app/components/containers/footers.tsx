@@ -1,11 +1,14 @@
 import * as React from "react";
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-interface IFootersProps {}
+interface IFootersProps {
+  className?: string;
+}
 
-const Footers: React.FunctionComponent<IFootersProps> = (props) => {
+const Footers: React.FunctionComponent<IFootersProps> = ({ className }) => {
   return (
-    <div className="bg-[#175399] py-5 px-5">
+    <div className={cn(["bg-[#175399] py-5 px-5", className])}>
       <div className="grid grid-cols-3 gap-5">
         <div className="flex justify-start items-center">
           <svg

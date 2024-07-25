@@ -16,7 +16,7 @@ export function IconsSelection({ type, className }: IconsType) {
     >
       {type === "icondeparture" && (
         <Image
-          width={24}
+          width={100}
           height={24}
           src="/images/form-filter-boats/departure.svg"
           alt="icon-departure"
@@ -24,7 +24,7 @@ export function IconsSelection({ type, className }: IconsType) {
       )}
       {type === "iconarrival" && (
         <Image
-          width={24}
+          width={100}
           height={24}
           src="/images/form-filter-boats/arrival.svg"
           alt="icon-arrival"
@@ -44,7 +44,7 @@ export function IconsDate({ type, className }: IconsType) {
     >
       {type === "leavingdate" && (
         <Image
-          width={42}
+          width={100}
           height={43}
           src="/images/form-filter-boats/leavingdate.svg"
           alt="icon-leavingdate"
@@ -52,7 +52,7 @@ export function IconsDate({ type, className }: IconsType) {
       )}
       {type === "returndate" && (
         <Image
-          width={42}
+          width={100}
           height={43}
           src="/images/form-filter-boats/returndate.svg"
           alt="icon-departure"
@@ -71,7 +71,7 @@ export function IconPassenger({ className }: IconsType) {
       ])}
     >
       <Image
-        width={24}
+        width={100}
         height={24}
         src="/images/form-filter-boats/passenger.svg"
         alt="icon-passenger"

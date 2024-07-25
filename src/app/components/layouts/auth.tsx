@@ -35,7 +35,7 @@ const AuthorizationTitle: React.FunctionComponent<AuthorizationTitleProps> = ({
   className,
 }) => {
   return (
-    <h3 className={cn(["font-semibold text-[40px]", className])}>{children}</h3>
+    <h3 className={cn(["font-bold text-[40px]", className])}>{children}</h3>
   );
 };
 
@@ -43,7 +43,7 @@ const AuthorizationSubTitle: React.FunctionComponent<
   AuthorizationSubTitleProps
 > = ({ children, className }) => {
   return (
-    <span className={cn(["text-[16px] text-gray-400", className])}>
+    <span className={cn(["text-[16px] text-[#9693A5]", className])}>
       {children}
     </span>
   );

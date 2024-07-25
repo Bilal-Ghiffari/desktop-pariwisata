@@ -16,6 +16,7 @@ interface IInputProps {
   name: string;
   className?: string;
   type: string;
+  icon?: React.ReactNode;
 }
 
 const Input: React.FunctionComponent<IInputProps> = ({
@@ -25,6 +26,7 @@ const Input: React.FunctionComponent<IInputProps> = ({
   name,
   type,
   className,
+  icon,
 }) => {
   return (
     <FormField

@@ -5,9 +5,11 @@ import * as React from "react";
 import NavItem from "./navitem";
 import Link from "next/link";
 
-interface INavBarProps {}
+interface INavBarProps {
+  navbg?: boolean;
+}
 
-const NavBar: React.FunctionComponent<INavBarProps> = (props) => {
+const NavBar: React.FunctionComponent<INavBarProps> = ({ navbg }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <>
@@ -68,21 +70,26 @@ const NavBar: React.FunctionComponent<INavBarProps> = (props) => {
           </svg>
         </a>
         <ul className=" flex-row gap-x-14 hidden lg:flex">
-          <NavItem link="/" name="Home" />
-          <NavItem link="/about" name="Tentang" />
-          <NavItem link="/contact" name="Kontak" />
-          <NavItem link="/faq" name="FAQ" />
+          <NavItem link="/" name="Home" navbg={navbg} />
+          <NavItem link="/about" name="Tentang" navbg={navbg} />
+          <NavItem link="/contact" name="Kontak" navbg={navbg} />
+          <NavItem link="/faq" name="FAQ" navbg={navbg} />
         </ul>
         <div className="hidden lg:flex flex-row gap-x-3">
           <Link
             href="/log-in"
-            className="md:w-fit w-full text-center text-base py-[12px] px-[26px]  font-semibold text-white"
+            className={cn([
+              "md:w-fit w-full text-center text-base font-semibold",
+              navbg
+                ? "text-white py-[12px] px-[26px]"
+                : "py-3 px-6 bg-[#466BF3]/10 rounded-xl",
+            ])}
           >
             Masuk
           </Link>
           <Link
             href="/daftar"
-            className="md:w-fit w-full text-center px-[26px] rounded-xl text-base py-[12px] font-semibold text-white bg-[#4086F5]"
+            className="md:w-fit w-full text-center px-[26px] rounded-xl text-base py-[12px] font-semibold text-white bg-[#175399]"
           >
             Daftar
           </Link>
@@ -99,10 +106,10 @@ const NavBar: React.FunctionComponent<INavBarProps> = (props) => {
         <div className="flex flex-col md:flex-row gap-x-24 gap-y-10 bg-white p-7 shadow-lg shadow-indigo-950/10 rounded-2xl">
           <div className="flex flex-col gap-y-4 ">
             <ul className="flex flex-col gap-y-5">
-              <NavItem link="/" name="Home" />
-              <NavItem link="/about" name="Tentang" />
-              <NavItem link="/contact" name="Kontak" />
-              <NavItem link="/faq" name="FAQ" />
+              <NavItem link="/" name="Home" navbg={navbg} />
+              <NavItem link="/about" name="Tentang" navbg={navbg} />
+              <NavItem link="/contact" name="Kontak" navbg={navbg} />
+              <NavItem link="/faq" name="FAQ" navbg={navbg} />
               <li>
                 <div className="flex flex-col gap-y-2">
                   <a

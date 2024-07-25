@@ -13,18 +13,37 @@ const SuccessPayment: React.FunctionComponent<ISuccessPaymentProps> = (
   const router = useRouter();
   return (
     <div className="flex justify-center w-full items-center transform translate-y-1/4">
-      <div className="flex flex-col space-y-5 items-center justify-center">
+      <div className="flex flex-col space-y-5 items-center justify-center mb-10">
         <svg
-          width="85"
-          height="85"
-          viewBox="0 0 85 85"
+          className="mb-10"
+          width="189"
+          height="184"
+          viewBox="0 0 189 184"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
+          <circle cx="94.5" cy="95.5" r="55.1182" fill="#009758" />
           <path
-            d="M36.6421 49.7797L27.5417 40.6774C26.7746 39.9102 25.8332 39.5266 24.7174 39.5266C23.6016 39.5266 22.6253 39.9451 21.7885 40.7821C21.0214 41.5493 20.6379 42.5258 20.6379 43.7115C20.6379 44.8972 21.0214 45.8737 21.7885 46.641L33.7132 58.568C34.4803 59.3352 35.4566 59.7189 36.6421 59.7189C37.8276 59.7189 38.8039 59.3352 39.571 58.568L63.3159 34.8185C64.083 34.0513 64.4665 33.1097 64.4665 31.9937C64.4665 30.8777 64.0481 29.9012 63.2113 29.0642C62.4442 28.297 61.4679 27.9134 60.2824 27.9134C59.0969 27.9134 58.1206 28.297 57.3535 29.0642L36.6421 49.7797ZM42.4999 84.0961C36.7119 84.0961 31.2725 82.9969 26.1818 80.7984C21.0912 78.6027 16.663 75.6216 12.8972 71.8552C9.13154 68.0887 6.15105 63.6597 3.95578 58.568C1.75772 53.4763 0.658691 48.0359 0.658691 42.2468C0.658691 36.4576 1.75772 31.0172 3.95578 25.9255C6.15105 20.8339 9.13154 16.4048 12.8972 12.6384C16.663 8.87195 21.0912 5.88949 26.1818 3.691C31.2725 1.49531 36.7119 0.397461 42.4999 0.397461C48.2879 0.397461 53.7273 1.49531 58.818 3.691C63.9087 5.88949 68.3369 8.87195 72.1026 12.6384C75.8683 16.4048 78.8488 20.8339 81.044 25.9255C83.2421 31.0172 84.3411 36.4576 84.3411 42.2468C84.3411 48.0359 83.2421 53.4763 81.044 58.568C78.8488 63.6597 75.8683 68.0887 72.1026 71.8552C68.3369 75.6216 63.9087 78.6027 58.818 80.7984C53.7273 82.9969 48.2879 84.0961 42.4999 84.0961Z"
-            fill="#31A91D"
+            d="M69.5046 95.6195L86.2948 112.403L119.861 78.8364"
+            stroke="#FEFEFF"
+            stroke-width="10.6088"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           />
+          <circle cx="162" cy="43" r="7" fill="#3079D9" />
+          <circle cx="79.5" cy="4.5" r="4.5" fill="#3079D9" />
+          <circle cx="137.5" cy="29.5" r="4.5" fill="#3079D9" />
+          <circle cx="162" cy="165" r="7" fill="#3079D9" />
+          <circle cx="182" cy="109" r="7" fill="#3079D9" />
+          <circle cx="154.5" cy="148.5" r="4.5" fill="#3079D9" />
+          <circle cx="74.5" cy="179.5" r="4.5" fill="#3079D9" />
+          <path
+            d="M8 144C8 146.209 6.20914 148 4 148C1.79086 148 0 146.209 0 144C0 141.791 1.79086 140 4 140C6.20914 140 8 141.791 8 144Z"
+            fill="#3079D9"
+          />
+          <circle cx="35" cy="33" r="4" fill="#3079D9" />
+          <circle cx="8.5" cy="55.5" r="5.5" fill="#3079D9" />
+          <circle cx="13.5" cy="121.5" r="5.5" fill="#3079D9" />
         </svg>
         <div className="space-y-5 text-center">
           <h2 className="text-3xl text-[#31A91D] font-semibold">
@@ -48,10 +67,10 @@ const SuccessPayment: React.FunctionComponent<ISuccessPaymentProps> = (
           </div>
         </div>
         <Button
-          className="w-full py-6"
-          onClick={() => router.replace(`/ticket/detail-ticket/3297492342`)}
+          className="w-full py-7 bg-[#175399] hover:bg-[#356499] text-white font-bold shadow-lg rounded-full text-lg"
+          onClick={() => router.replace(`/ticket`)}
         >
-          Continue
+          See Order List
         </Button>
       </div>
     </div>

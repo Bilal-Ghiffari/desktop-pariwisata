@@ -25,7 +25,9 @@ const CardTicketBoat: React.FunctionComponent<ICardTicketBoatProps> = (
           </div>
           <div className="flex flex-row gap-x-2 items-center">
             <span className="text-sm text-gray-400/80">BL2 32452395</span>
-            <Badge>Regular</Badge>
+            <Badge variant="badgecard" className="">
+              Regular
+            </Badge>
           </div>
         </div>
         <div className="flex flex-col gap-y-2 justify-center w-full">
@@ -63,7 +65,10 @@ const CardTicketBoat: React.FunctionComponent<ICardTicketBoatProps> = (
           <p className="text-gray-300 text-sm">Total Harga</p>
           <h3 className="text-[#D61355] text-[20px] font-bold">IDR 150.000</h3>
         </div>
-        <Button onClick={() => router.replace("/pesseger-detail")}>
+        <Button
+          className="bg-[#175399]"
+          onClick={() => router.push("/pesseger-detail")}
+        >
           Pilih Tiket
         </Button>
       </div>

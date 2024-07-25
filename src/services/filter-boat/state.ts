@@ -45,8 +45,16 @@ export const useFiltersBoatActions = () => {
   const handleSubmit = () => {
     // Refetch the data when handleOnSubmit is called
     // refetch
-    const url = `/available-boat?${queryParams}`;
-    router.push(url);
+    if (state.departure && state.arrival !== "") {
+      const url = `/available-boat?${queryParams}`;
+      router.push(url);
+    } else {
+      toast({
+        variant: "default",
+        title: "Pilih Destinasi dulu Yuk!!",
+        description: "Mau pergi kemana? Pilih destinasimu sebelum cari kapal",
+      });
+    }
   };
   return {
     handleOnSubmit,

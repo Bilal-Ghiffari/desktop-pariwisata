@@ -40,19 +40,18 @@ const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
   const { isSwitch, setCountry, country, passengerTypes, handleTypeChange } =
     usePassengerContext();
   const { passeger } = useSelector((state: RootState) => state);
-  console.log("country", country);
+
   return (
     <div className="">
       <div className="flex flex-col space-x-2 border border-gray-200">
         <div>
-          <p className="p-5">
+          <p className="p-5 font-semibold">
             Penumpang {id + 1} ({type})
           </p>
           <Separator className="" />
         </div>
         <div className="p-8 space-y-3">
           <div className="flex flex-col gap-y-4">
-            <label htmlFor="">Nama Lengkap</label>
             <input
               type="text"
               className="px-[16px] py-4 rounded-[8px] h-12 border border-[#999999] focus:outline-none"
@@ -80,7 +79,7 @@ const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
               <input
                 type="text"
                 className="px-[16px] py-4 h-12 rounded-[8px] border border-[#999999] focus:outline-none"
-                placeholder="IC Nomor"
+                placeholder="Nomor Ktp/Nik"
                 name="IcNomor"
               />
             ) : (

@@ -1,17 +1,26 @@
 import * as React from "react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface INavItemProps {
   link: string;
   name: string;
+  navbg?: boolean;
 }
 
-const NavItem: React.FunctionComponent<INavItemProps> = ({ link, name }) => {
+const NavItem: React.FunctionComponent<INavItemProps> = ({
+  link,
+  name,
+  navbg,
+}) => {
   return (
     <li>
       <Link
         href={link}
-        className="text-[#BBBDC3] hover:text-white font-semibold hover:underline hover:underline-offset-8 hover:transition hover:duration-700"
+        className={cn([
+          "font-medium hover:transition hover:duration-700 hover:text-[#175399]",
+          navbg ? "text-[#FFFFFF]/70" : "text-[#9C9C9C]",
+        ])}
       >
         {name}
       </Link>

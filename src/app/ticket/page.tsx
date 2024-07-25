@@ -12,8 +12,9 @@ const Ticket: React.FunctionComponent<ITicketProps> = (props) => {
     <div className="container mx-auto">
       <NavBar />
       <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-x-5">
-        <CardTicket returnDate />
-        <CardTicket />
+        <CardTicket returnDate status="success" />
+        <CardTicket status="pending" />
+        <CardTicket status="cancel" />
       </div>
     </div>
   );

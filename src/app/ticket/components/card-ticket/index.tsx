@@ -1,18 +1,27 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { ChevronLast, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 
 interface ICardTicketProps {
   returnDate?: boolean;
+  status: "success" | "pending" | "cancel";
 }
 
 const CardTicket: React.FunctionComponent<ICardTicketProps> = ({
   returnDate,
+  status,
 }) => {
+  const router = useRouter();
   return (
-    <div className="bg-white shadow-md rounded-xl p-7">
+    <div
+      className="bg-white shadow-md rounded-xl p-7 cursor-pointer"
+      onClick={() => router.push("/ticket/detail-ticket/32y48y234y234")}
+    >
       <div className="flex justify-between">
         <div className="">
           <Image
@@ -23,7 +32,9 @@ const CardTicket: React.FunctionComponent<ICardTicketProps> = ({
           />
         </div>
         <div className="flex items-center">
-          <Badge variant="destructive">Lunas</Badge>
+          {status === "success" && <Badge variant="success">Lunas</Badge>}
+          {status === "pending" && <Badge variant="pending">Menunggu</Badge>}
+          {status === "cancel" && <Badge variant="destructive">Cancel</Badge>}
         </div>
       </div>
       <div className="">Kode Pemesanan: YQT5A7</div>

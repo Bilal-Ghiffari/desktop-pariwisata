@@ -48,7 +48,6 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
       setIsSwitch(true);
     }
   }, [state.returnDate]);
-  console.log(state);
   const dataRegion = [
     { name: "Gilimanuk", value: "gilimanuk" },
     { name: "Merak", value: "merak" },
@@ -60,7 +59,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
     <div className="max-w-4xl relative z-20 mx-auto mt-10 bg-white shadow-lg rounded-lg p-6 transform -translate-x-6 -translate-y-[13.5rem] top-5 drop-shadow-lg">
       <div className="flex mb-4">
         <button className="px-4 py-2 bg-blue-600 text-white rounded-l-lg focus:outline-none">
-          Ferry
+          Ship
         </button>
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
@@ -113,7 +112,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
             </div>
           </FieldDates>
           <div className="ml-auto text-center space-y-3">
-            <p className="text-gray-400/45 text-[15px]">Pulang Pergi</p>
+            <p className="text-gray-400/70 text-[15px]">Pulang Pergi</p>
             <Switch
               id="add as passenger"
               checked={isSwitch}
@@ -176,12 +175,12 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
               <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                   <DialogTitle>Atur Jumlah Penumpang</DialogTitle>
-                  <DialogDescription>
+                  {/* <DialogDescription>
                     Pastikan jumlah penumpangnya sesuai biar dapat asuransi
                     perjalanan.
-                  </DialogDescription>
+                  </DialogDescription> */}
                 </DialogHeader>
-                <div className="flex flex-col gap-y-5">
+                <div className="flex flex-col gap-y-5 my-5">
                   <PassengerCounter
                     label="Dewasa"
                     minQuantity={1}
@@ -256,7 +255,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
             alt="icon-search"
             className="mr-2"
           />
-          Cari Ferry
+          Cari Ship
         </Button>
       </div>
     </div>
