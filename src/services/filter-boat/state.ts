@@ -46,7 +46,7 @@ export const useFiltersBoatActions = () => {
     // Refetch the data when handleOnSubmit is called
     // refetch
     const url = `/available-boat?${queryParams}`;
-    router.replace(url);
+    router.push(url);
   };
   return {
     handleOnSubmit,
