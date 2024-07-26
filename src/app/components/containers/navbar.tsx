@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import * as React from "react";
 import NavItem from "./navitem";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import SwitchTranslation from "./SwitchTranslation";
 
 interface INavBarProps {
   navbg?: boolean;
@@ -11,6 +13,7 @@ interface INavBarProps {
 
 const NavBar: React.FunctionComponent<INavBarProps> = ({ navbg }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { t } = useTranslation();
   return (
     <>
       <div className="navbar items-center py-8 flex flex-row justify-between">
@@ -70,12 +73,17 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({ navbg }) => {
           </svg>
         </a>
         <ul className=" flex-row gap-x-14 hidden lg:flex">
-          <NavItem link="/" name="Home" navbg={navbg} />
-          <NavItem link="/about" name="Tentang" navbg={navbg} />
-          <NavItem link="/contact" name="Kontak" navbg={navbg} />
-          <NavItem link="/faq" name="FAQ" navbg={navbg} />
+          <NavItem link="/" name={t("navbar.nav-item-1")} navbg={navbg} />
+          <NavItem link="/about" name={t("navbar.nav-item-2")} navbg={navbg} />
+          <NavItem
+            link="/contact"
+            name={t("navbar.nav-item-3")}
+            navbg={navbg}
+          />
+          <NavItem link="/faq" name={t("navbar.nav-item-4")} navbg={navbg} />
         </ul>
-        <div className="hidden lg:flex flex-row gap-x-3">
+        <div className="hidden lg:flex flex-row gap-x-3 items-center">
+          <SwitchTranslation />
           <Link
             href="/log-in"
             className={cn([
@@ -85,13 +93,13 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({ navbg }) => {
                 : "py-3 px-6 bg-[#466BF3]/10 rounded-xl",
             ])}
           >
-            Masuk
+            {t("navbar.btn-signin")}
           </Link>
           <Link
             href="/daftar"
             className="md:w-fit w-full text-center px-[26px] rounded-xl text-base py-[12px] font-semibold text-white bg-[#175399]"
           >
-            Daftar
+            {t("navbar.btn-signup")}
           </Link>
         </div>
       </div>

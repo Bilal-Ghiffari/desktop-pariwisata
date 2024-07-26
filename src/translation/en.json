@@ -1,0 +1,35 @@
+{
+  "navbar": {
+    "nav-item-1": "Home",
+    "nav-item-2": "About",
+    "nav-item-3": "Contact",
+    "nav-item-4": "FAQ",
+    "btn-signin": "Sign In",
+    "btn-signup": "Sign Up"
+  },
+  "hero": {
+    "title-1": "life is too short for a wide and beautiful world",
+    "title-2": "Enjoy Your Tour With Heavenly experience you've never had",
+    "card-title-filter": "Ship",
+    "card-field-1": "Departure",
+    "card-field-2": "Arrival",
+    "card-field-3": "Select Departure Date",
+    "card-field-4": "Select Return Date",
+    "card-field-5": "Passenger",
+    "card-field-5-title": "Set Number of Passengers",
+    "card-field-5-title-1": "Adult",
+    "card-field-5-title-2": "Children",
+    "card-field-5-title-3": "For ages under 3 years",
+    "card-field-5-button": "Save",
+    "card-field-button": "Search Ship"
+  },
+  "footers": {
+    "title-1": "Any plans for an island hopping trip?",
+    "title-2": "Get the latest travel information & deals!",
+    "item-1": "About us",
+    "item-2": "Mobile",
+    "item-3": "Privacy",
+    "item-4": "Terms and Conditions",
+    "item-5": "Customer"
+  }
+}

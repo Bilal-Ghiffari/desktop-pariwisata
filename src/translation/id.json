@@ -1,0 +1,35 @@
+{
+  "navbar": {
+    "nav-item-1": "Beranda",
+    "nav-item-2": "Tentang Kami",
+    "nav-item-3": "Kontak",
+    "nav-item-4": "FAQ",
+    "btn-signin": "Masuk",
+    "btn-signup": "Daftar"
+  },
+  "hero": {
+    "title-1": "hidup terlalu singkat untuk dunia yang luas dan indah",
+    "title-2": "Nikmati Tur Anda dengan Pengalaman Surgawi yang Belum Pernah Anda Alami",
+    "card-title-filter": "Kapal",
+    "card-field-1": "Keberangkatan",
+    "card-field-2": "Kedatangan",
+    "card-field-3": "Pilih Tanggal Keberangkatan",
+    "card-field-4": "Pilih Tanggal Kembali",
+    "card-field-5": "Penumpang",
+    "card-field-5-title": "Tentukan Jumlah Penumpang",
+    "card-field-5-title-1": "Dewasa",
+    "card-field-5-title-2": "Anak-anak",
+    "card-field-5-title-3": "Untuk umur dibawah 3 tahun",
+    "card-field-5-button": "Simpan",
+    "card-field-button": "Cari Kapal"
+  },
+  "footers": {
+    "title-1": "Ada rencana untuk perjalanan hopping pulau?",
+    "title-2": "Dapatkan informasi & penawaran perjalanan terbaru!",
+    "item-1": "Tentang Kami",
+    "item-2": "Aplikasi Mobile",
+    "item-3": "Privasi",
+    "item-4": "Syarat dan Ketentuan",
+    "item-5": "Pelanggan"
+  }
+}

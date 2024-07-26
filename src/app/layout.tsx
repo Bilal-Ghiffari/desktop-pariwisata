@@ -6,6 +6,7 @@ import Footers from "./components/containers/footers";
 import QueryProvider from "./provider/query-provider";
 import StoreProvider from "./provider/store-provider";
 import { Toaster } from "@/components/ui/toaster";
+import I18NextProvider from "./provider/I18NextProvider";
 
 const inter = DM_Sans({ subsets: ["latin"] });
 
@@ -27,9 +28,11 @@ export default function RootLayout({
           <QueryProvider>{children}</QueryProvider>
           </div>
           <Footers /> */}
-        <StoreProvider>
-          <QueryProvider>{children}</QueryProvider>
-        </StoreProvider>
+        <I18NextProvider>
+          <StoreProvider>
+            <QueryProvider>{children}</QueryProvider>
+          </StoreProvider>
+        </I18NextProvider>
         <Toaster />
       </body>
     </html>

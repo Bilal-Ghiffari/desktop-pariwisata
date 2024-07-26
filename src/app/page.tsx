@@ -6,6 +6,7 @@ import CardFilterBoat from "./components/containers/form-filters-boat/card";
 import { BoatContextProvider } from "./provider/boat-provider";
 import Image from "next/image";
 import Footers from "./components/containers/footers";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const [inputA, setInputA] = useState("");
@@ -23,6 +24,7 @@ export default function Home() {
     setInputA(inputB);
     setInputB(inputA);
   };
+  const { t } = useTranslation();
   return (
     <>
       <div>
@@ -37,10 +39,10 @@ export default function Home() {
             <NavBar navbg />
             <div className="flex text-center justify-center flex-col gap-y-5 mt-[125px]">
               <span className="text-[22px] font-semibold text-[#BBBDC3]">
-                life is too short for a wide and beautiful world
+                {t("hero.title-1")}
               </span>
               <h2 className="text-[52px] font-bold text-white">
-                Enjoy Your Tour With Heavenly experience you&apos;ve never had
+                {t("hero.title-2")}
               </h2>
             </div>
           </div>

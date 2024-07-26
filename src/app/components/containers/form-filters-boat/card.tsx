@@ -26,12 +26,14 @@ import PassengerCounter from "./field-passenger";
 import FieldSelections from "./field-selection";
 import { IconPassenger, IconsDate, IconsSelection } from "./icons";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface ICardFilterBoatProps {}
 
 const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
   props
 ) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const state = useSelector((state: RootState) => state.boatFilter);
   const { handleSubmit } = useFiltersBoatActions();
@@ -59,7 +61,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
     <div className="max-w-4xl relative z-20 mx-auto mt-10 bg-white shadow-lg rounded-lg p-6 transform -translate-x-6 -translate-y-[13.5rem] top-5 drop-shadow-lg">
       <div className="flex mb-4">
         <button className="px-4 py-2 bg-blue-600 text-white rounded-l-lg focus:outline-none">
-          Ship
+          {t("hero.card-title-filter")}
         </button>
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
@@ -70,8 +72,8 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
             onValueChange={(val: string) =>
               dispatch(searchBoat({ departure: val }))
             }
-            placeholder="Berangkat"
-            title="Berangkat"
+            placeholder={t("hero.card-field-1")}
+            title={t("hero.card-field-1")}
             value={state.departure || ""}
           />
         </div>
@@ -82,15 +84,15 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
             onValueChange={(val: string) =>
               dispatch(searchBoat({ arrival: val }))
             }
-            placeholder="Tujuan"
-            title="Tujuan"
+            placeholder={t("hero.card-field-2")}
+            title={t("hero.card-field-2")}
             value={state.arrival || ""}
           />
         </div>
         <div className="flex items-center bg-white p-4 rounded-lg shadow-sm">
           <IconsDate type="leavingdate" />
           <FieldDates
-            title="Pilih Tanggal Pergi"
+            title={t("hero.card-field-3")}
             disabled={(date) => date < new Date(Date.now())}
             onSelect={(day: any) => {
               if (day) {
@@ -144,7 +146,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
                 ? new Date(state.returnDate)
                 : new Date(state.leavingDate ? state.leavingDate : Date.now())
             }
-            title="Pilih Tangal Pulang"
+            title={t("hero.card-field-4")}
           >
             <div className="text-lg">
               {state.returnDate ? (
@@ -165,16 +167,19 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
         <div className="flex items-center bg-white p-4 rounded-lg shadow-sm">
           <IconPassenger />
           <div>
-            <div className="text-sm text-gray-500">Penumpang</div>
+            <div className="text-sm text-gray-500">
+              {t("hero.card-field-5")}
+            </div>
             <Dialog>
               <DialogTrigger asChild>
                 <span className="text-lg flex w-full cursor-pointer">
-                  {state.adultQuantity} Dewasa {state.childQuantity} Bayi
+                  {state.adultQuantity} {t("hero.card-field-5-title-1")}{" "}
+                  {state.childQuantity} {t("hero.card-field-5-title-2")}
                 </span>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
                 <DialogHeader>
-                  <DialogTitle>Atur Jumlah Penumpang</DialogTitle>
+                  <DialogTitle>{t("hero.card-field-5-title")}</DialogTitle>
                   {/* <DialogDescription>
                     Pastikan jumlah penumpangnya sesuai biar dapat asuransi
                     perjalanan.
@@ -182,7 +187,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
                 </DialogHeader>
                 <div className="flex flex-col gap-y-5 my-5">
                   <PassengerCounter
-                    label="Dewasa"
+                    label={t("hero.card-field-5-title-1")}
                     minQuantity={1}
                     quantity={state.adultQuantity}
                     onIncrement={() =>
@@ -203,9 +208,9 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
                   <PassengerCounter
                     label={
                       <div className="flex flex-col gap-y-[2px]">
-                        <span>Anak Anak</span>
+                        <span>{t("hero.card-field-5-title-2")}</span>
                         <span className="text-gray-400/80 text-[13px]">
-                          Untuk umur dibawah 3 tahun
+                          {t("hero.card-field-5-title-3")}
                         </span>
                       </div>
                     }
@@ -234,7 +239,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
                       className="flex w-full bg-blue-600 text-white hover:bg-blue-500"
                       variant="secondary"
                     >
-                      Simpan
+                      {t("hero.card-field-5-button")}
                     </Button>
                   </DialogClose>
                 </DialogFooter>
@@ -255,7 +260,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
             alt="icon-search"
             className="mr-2"
           />
-          Cari Ship
+          {t("hero.card-field-button")}
         </Button>
       </div>
     </div>

@@ -1,12 +1,14 @@
 import * as React from "react";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 interface IFootersProps {
   className?: string;
 }
 
 const Footers: React.FunctionComponent<IFootersProps> = ({ className }) => {
+  const { t } = useTranslation();
   return (
     <div className={cn(["bg-[#175399] py-5 px-5", className])}>
       <div className="grid grid-cols-3 gap-5">
@@ -51,20 +53,20 @@ const Footers: React.FunctionComponent<IFootersProps> = ({ className }) => {
         </div>
         <div className="flex flex-col  space-y-2">
           <h3 className="text-xl text-white font-semibold">
-            Ada rencana perjalanan lintas pulau?
+            {t("footers.title-1")}
           </h3>
           <span className="text-[13px] text-white/50">
-            Dapatkan informasi & penawaran perjalanan terbaru!
+            {t("footers.title-2")}
           </span>
         </div>
       </div>
       <div className="flex justify-between mt-8">
         <div className="flex flex-row gap-x-10 text-sm items-center text-white">
-          <span>Tentang Kami</span>
-          <span>Mobile</span>
-          <span>Privacy</span>
-          <span>Syarat dan Ketentuan</span>
-          <span>Customer</span>
+          <span>{t("footers.item-1")}</span>
+          <span>{t("footers.item-2")}</span>
+          <span>{t("footers.item-3")}</span>
+          <span>{t("footers.item-4")}</span>
+          <span>{t("footers.item-5")}</span>
         </div>
         <div className="flex flex-row gap-x-10 text-sm">
           <Facebook className="text-white" />
