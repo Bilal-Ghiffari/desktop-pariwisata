@@ -51,7 +51,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
     }
   }, [state.returnDate]);
   const dataRegion = [
-    { name: "Gilimanuk", value: "gilimanuk" },
+    { name: "Sanur", value: "sanur" },
     { name: "Merak", value: "merak" },
     { name: "Nusapeninda", value: "nusapeninda" },
     { name: "Labuan Bajo", value: "LabuanBajo" },

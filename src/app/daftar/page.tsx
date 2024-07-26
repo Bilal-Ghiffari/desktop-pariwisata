@@ -54,7 +54,7 @@ const RegisterPage: React.FunctionComponent<IRegisterPageProps> = (props) => {
                     form={form}
                     type="text"
                     name="lastName"
-                    placeholder="Nama Depan"
+                    placeholder="Nama Belakang"
                     className="py-4 px-6 border rounded-full focus:outline-none placeholder:text-lg"
                   />
                 </div>
