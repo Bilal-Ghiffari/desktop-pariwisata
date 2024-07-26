@@ -56,7 +56,6 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
     { name: "Nusapeninda", value: "nusapeninda" },
     { name: "Labuan Bajo", value: "LabuanBajo" },
   ];
-
   return (
     <div className="max-w-4xl relative z-20 mx-auto mt-10 bg-white shadow-lg rounded-lg p-6 transform -translate-x-6 -translate-y-[13.5rem] top-5 drop-shadow-lg">
       <div className="flex mb-4">

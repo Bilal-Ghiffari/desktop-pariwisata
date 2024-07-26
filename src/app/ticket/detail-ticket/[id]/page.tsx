@@ -3,6 +3,7 @@
 import Footers from "@/app/components/containers/footers";
 import NavBar from "@/app/components/containers/navbar";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -24,9 +25,9 @@ const DetailTicket: React.FunctionComponent<IDetailTicketProps> = (props) => {
   const state = useSelector((state: RootState) => state.boatFilter);
   return (
     <>
-      <div className="container mx-auto h-screen">
+      <div className="container mx-auto">
         <NavBar />
-        <div className="flex flex-row gap-x-5 mt-20">
+        <div className="flex flex-row gap-x-10 mt-20">
           <div className="w-1/2 gap-x-10">
             <div className="p-8 flex flex-col max-h-min bg-white shadow-lg rounded-[30px]">
               <div className="flex justify-between">
@@ -64,7 +65,7 @@ const DetailTicket: React.FunctionComponent<IDetailTicketProps> = (props) => {
                         <path
                           d="M0.333333 3C0.333333 4.47276 1.52724 5.66667 3 5.66667C4.47276 5.66667 5.66667 4.47276 5.66667 3C5.66667 1.52724 4.47276 0.333333 3 0.333333C1.52724 0.333333 0.333333 1.52724 0.333333 3ZM536.333 3C536.333 4.47276 537.527 5.66667 539 5.66667C540.473 5.66667 541.667 4.47276 541.667 3C541.667 1.52724 540.473 0.333333 539 0.333333C537.527 0.333333 536.333 1.52724 536.333 3ZM3 3.5H539V2.5H3V3.5Z"
                           fill="#808080"
-                          fill-opacity="0.75"
+                          fillOpacity="0.75"
                         />
                       </svg>
                       <p className="text-[13px] text-gray-400/80 text-center">
@@ -81,7 +82,10 @@ const DetailTicket: React.FunctionComponent<IDetailTicketProps> = (props) => {
                   </div>
                 </div>
               </div>
-              <Alert variant="warning" className="mt-10">
+              <div className="mt-10 flex justify-center gap-x-5 mb-10">
+                <img src="/images/barcode.png" className="w-40 h-40" />
+              </div>
+              <Alert variant="warning" className="p-3">
                 <div className="flex items-center gap-x-2">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription className="">
@@ -92,14 +96,11 @@ const DetailTicket: React.FunctionComponent<IDetailTicketProps> = (props) => {
             </div>
           </div>
           <div className="w-1/2">
-            <div className="bg-white shadow-lg rounded-[30px] p-8 space-y-4">
-              <Carousel
-                orientation="vertical"
-                opts={{ align: "start", loop: true }}
-              >
-                <CarouselContent className="h-[350px]">
+            <div className="bg-white shadow-lg rounded-[30px] p-8 space-y-4 mb-20">
+              <Carousel orientation="vertical" className="">
+                <CarouselContent className="h-[530px]">
                   {Array.from({ length: state.passeger }).map((_, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2">
+                    <CarouselItem key={index} className="md:basis-1/3">
                       <div className="bg-gray-200/40 rounded-lg p-7">
                         <h2>Penumpang {index + 1}</h2>
                         <Separator className="my-4" />

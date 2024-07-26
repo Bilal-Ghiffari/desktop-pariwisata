@@ -21,7 +21,7 @@ const initialState: FilterState = {
   arrival: "",
   leavingDate: new Date(Date.now()).toISOString(),
   returnDate: "",
-  passeger: 0,
+  passeger: 1,
   adultQuantity: 1,
   childQuantity: 0,
 };
