@@ -11,7 +11,7 @@ const Footers: React.FunctionComponent<IFootersProps> = ({ className }) => {
   const { t } = useTranslation();
   return (
     <div className={cn(["bg-[#175399] py-5 px-5", className])}>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-5">
         <div className="flex justify-start items-center">
           <svg
             width="97"
@@ -51,27 +51,68 @@ const Footers: React.FunctionComponent<IFootersProps> = ({ className }) => {
             />
           </svg>
         </div>
-        <div className="flex flex-col  space-y-2">
-          <h3 className="text-xl text-white font-semibold">
+        <div className="flex flex-col space-y-2">
+          <h3 className="text-2xl text-white font-semibold">
             {t("footers.title-1")}
           </h3>
-          <span className="text-[13px] text-white/50">
+          <span className="text-[16px] text-white/50">
             {t("footers.title-2")}
           </span>
         </div>
       </div>
-      <div className="flex justify-between mt-8">
-        <div className="flex flex-row gap-x-10 text-sm items-center text-white">
-          <span>{t("footers.item-1")}</span>
-          <span>{t("footers.item-2")}</span>
-          <span>{t("footers.item-3")}</span>
-          <span>{t("footers.item-4")}</span>
-          <span>{t("footers.item-5")}</span>
+      {/* <div className="md:flex md:justify-between sm:flex-col mt-8">
+        <div className="md:flex md:flex-row sm:flex-col md:gap-x-10 sm:gap-y-5 text-[16px] md:items-center text-white">
+          <h2>{t("footers.item-1")}</h2>
+          <h2>{t("footers.item-2")}</h2>
+          <h2>{t("footers.item-3")}</h2>
+          <h2>{t("footers.item-4")}</h2>
+          <h2>{t("footers.item-5")}</h2>
         </div>
         <div className="flex flex-row gap-x-10 text-sm">
           <Facebook className="text-white" />
           <Instagram className="text-white" />
           <Twitter className="text-white" />
+        </div>
+      </div> */}
+
+      <div className="flex flex-col sm:flex-row sm:justify-between mt-16">
+        <div className="flex flex-col mb-4 sm:mb-0">
+          <h2 className="text-lg font-semibold text-white">
+            {t("footers.item-1")}
+          </h2>
+          <div className="*:text-white/40">
+            <p>{t("footers.item-2")}</p>
+            <p>{t("footers.item-3")}</p>
+          </div>
+        </div>
+        <div className="flex flex-col mb-4 sm:mb-0">
+          <h2 className="text-lg font-semibold text-white">
+            {t("footers.item-4")}
+          </h2>
+          <p className="text-white/40">{t("footers.item-5")}</p>
+        </div>
+        <div className="flex flex-col mb-4 sm:mb-0">
+          <h2 className="text-lg font-semibold text-white">
+            {t("footers.contact")}
+          </h2>
+          <div className="*:text-white/40">
+            <p>corp@pari.co.id</p>
+            <p>+62 812 3456 7890</p>
+            <p>
+              Intiland Tower Lt. 12A, Jl. Jend Sudirman Kav. 32, Kota Jakarta
+              Pusat, DKI Jakarta 10250
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col mb-4 sm:mb-0">
+          <h2 className="text-lg font-semibold text-white">
+            {t("footers.contact")}
+          </h2>
+          <div className="flex flex-row gap-x-3 mt-4">
+            <Facebook className="text-white" />
+            <Instagram className="text-white" />
+            <Twitter className="text-white" />
+          </div>
         </div>
       </div>
     </div>

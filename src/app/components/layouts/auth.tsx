@@ -24,7 +24,7 @@ const AuthorizationParent: React.FunctionComponent<IAuthorizationProps> = ({
   children,
 }) => {
   return (
-    <div className="lg:flex sm:container sm:mx-auto px-5 justify-center items-center lg:mt-24">
+    <div className="md:flex justify-center items-center md:mt-24">
       <div className="flex flex-col gap-y-5">{children}</div>
     </div>
   );
@@ -35,7 +35,9 @@ const AuthorizationTitle: React.FunctionComponent<AuthorizationTitleProps> = ({
   className,
 }) => {
   return (
-    <h3 className={cn(["font-bold text-[40px]", className])}>{children}</h3>
+    <h3 className={cn(["font-bold md:text-[40px] text-3xl", className])}>
+      {children}
+    </h3>
   );
 };
 
@@ -54,7 +56,10 @@ const AuthorizationFormInput: React.FunctionComponent<
 > = ({ children, className }) => {
   return (
     <div
-      className={cn(["flex flex-col gap-y-4 mb-10 mt-14 w-[544px]", className])}
+      className={cn([
+        "flex flex-col gap-y-4 mb-10 mt-14 md:w-[544px] sm:max-sm:",
+        className,
+      ])}
     >
       {children}
     </div>

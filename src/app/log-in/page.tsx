@@ -21,7 +21,9 @@ const SignInPage: React.FunctionComponent<ISignInPageProps> = (props) => {
         <NavBar />
         <Authorization>
           <div>
-            <Authorization.Title>Selamat datang!</Authorization.Title>
+            <Authorization.Title className="mb-1">
+              Selamat datang!
+            </Authorization.Title>
             <Authorization.SubTitle>
               Belum memiliki akun?{" "}
               <Link
