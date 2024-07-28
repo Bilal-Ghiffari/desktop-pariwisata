@@ -25,7 +25,9 @@ const RegisterPage: React.FunctionComponent<IRegisterPageProps> = (props) => {
         <NavBar />
         <Authorization>
           <div>
-            <Authorization.Title>Buat Akun</Authorization.Title>
+            <Authorization.Title className="mb-1">
+              Buat Akun
+            </Authorization.Title>
             <Authorization.SubTitle>
               Sudah memiliki akun?{" "}
               <Link

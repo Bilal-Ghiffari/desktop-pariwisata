@@ -37,11 +37,11 @@ export default function Home() {
           />
           <div className="container mx-auto absolute top-0 left-0 right-0 z-20">
             <NavBar navbg />
-            <div className="flex text-center justify-center flex-col gap-y-5 mt-[125px]">
+            <div className="flex text-center justify-center flex-col gap-y-5 md:mt-[125px]">
               <span className="text-[22px] font-semibold text-[#BBBDC3]">
                 {t("hero.title-1")}
               </span>
-              <h2 className="text-[52px] font-bold text-white">
+              <h2 className="text-[52px] font-bold text-white md:block hidden">
                 {t("hero.title-2")}
               </h2>
             </div>
