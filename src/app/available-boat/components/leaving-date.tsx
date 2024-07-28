@@ -33,7 +33,7 @@ const LeavingDate: React.FunctionComponent<ILeavingDateProps> = ({
     }
   }, [returnDate]);
   return (
-    <div className="flex items-center bg-white p-4 rounded-lg shadow-sm gap-4">
+    <div className="flex items-center bg-white p-4 rounded-lg shadow-sm">
       <IconsDate type="leavingdate" />
       <FieldDates
         title="Pilih Tanggal Pergi"
@@ -58,7 +58,7 @@ const LeavingDate: React.FunctionComponent<ILeavingDateProps> = ({
         </div>
       </FieldDates>
 
-      <div className="ml-auto text-center space-y-3">
+      <div className="ml-auto md:ml-0 text-center space-y-3 pl-10">
         <p className="text-gray-400/45 text-[15px]">Pulang Pergi</p>
         <Switch
           id="add as passenger"
