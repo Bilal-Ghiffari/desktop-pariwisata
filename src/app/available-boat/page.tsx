@@ -3,76 +3,38 @@
 import * as React from "react";
 import NavBar from "../components/containers/navbar";
 
-// import { Button } from "@/components/ui/button";
-
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
-import { searchBoat, updateQuantities } from "@/lib/features/boatfilterSlice";
-import { AppDispatch, RootState } from "@/lib/store";
-import { cn } from "@/lib/utils";
-import { useFiltersBoatActions } from "@/services/filter-boat/state";
+import { RootState } from "@/lib/store";
 import { dateFormat } from "@/utils";
-import { useDispatch, useSelector } from "react-redux";
-import CardTicketBoat from "../components/containers/card-ticket-boat";
-import FieldDates from "../components/containers/form-filters-boat/field-dates";
-import PassengerCounter from "../components/containers/form-filters-boat/field-passenger";
-import FieldSelections from "../components/containers/form-filters-boat/field-selection";
-import {
-  IconPassenger,
-  IconsDate,
-  IconsSelection,
-} from "../components/containers/form-filters-boat/icons";
-import { useRouter } from "next/navigation";
-import Footers from "../components/containers/footers";
 import Image from "next/image";
-import Arrival from "./components/Arrival";
-import Departure from "./components/Departure";
+import { useSelector } from "react-redux";
+import CardTicketBoat from "../components/containers/card-ticket-boat";
+import Footers from "../components/containers/footers";
+import Arrival from "./components/arrival";
+import Departure from "./components/departure";
 import LeavingDate from "./components/leaving-date";
-import ReturnDate from "./components/return-date";
 import Passenger from "./components/passenger";
-import { Search } from "lucide-react";
+import ReturnDate from "./components/return-date";
 
 interface IAvailableBoatProps {}
 
 const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
-  const dispatch = useDispatch<AppDispatch>();
   const state = useSelector((state: RootState) => state.boatFilter);
-  const { handleSubmit } = useFiltersBoatActions();
   const [isSwitch, setIsSwitch] = React.useState<boolean>(false);
-  const handleSwitchButton = React.useCallback(() => {
-    if (isSwitch) {
-      dispatch(searchBoat({ returnDate: "" }));
-    }
-    setIsSwitch(!isSwitch);
-  }, [isSwitch]);
-
-  React.useEffect(() => {
-    if (state.returnDate !== "") {
-      setIsSwitch(true);
-    }
-  }, [state.returnDate]);
 
   const dataRegion = [
     { name: "Gilimanuk", value: "gilimanuk" },

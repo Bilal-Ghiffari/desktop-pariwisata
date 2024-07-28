@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DataRegionType } from "./Arrival";
+import { DataRegionType } from "./arrival";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/store";
 import { IconsSelection } from "@/app/components/containers/form-filters-boat/icons";
@@ -13,6 +13,7 @@ interface IDepartureProps {
 const Departure: React.FunctionComponent<IDepartureProps> = ({ data }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { departure } = useSelector((state: RootState) => state.boatFilter);
+  console.log(departure);
   return (
     <div className="flex items-center bg-white p-4 rounded-lg shadow-sm">
       <IconsSelection type="icondeparture" />
