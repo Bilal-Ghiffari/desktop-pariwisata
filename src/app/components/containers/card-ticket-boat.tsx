@@ -12,9 +12,9 @@ const CardTicketBoat: React.FunctionComponent<ICardTicketBoatProps> = (
   const router = useRouter();
   return (
     <div className="bg-white p-6 rounded-[24px] shadow-sm">
-      <div className="flex flex-row gap-x-5">
-        <div className="flex flex-col gap-y-2 w-1/2">
-          <div className="flex flex-row items-center gap-x-3">
+      <div className="flex md:flex-row flex-col gap-x-5 md:space-y-0 space-y-5">
+        <div className="flex flex-col gap-y-2 md:w-1/2 w-full">
+          <div className="flex flex-row items-center md:justify-normal justify-between gap-x-3">
             <Image
               width={80}
               height={80}
@@ -23,7 +23,7 @@ const CardTicketBoat: React.FunctionComponent<ICardTicketBoatProps> = (
             />
             <h3 className="font-bold">Blue Water Express</h3>
           </div>
-          <div className="flex flex-row gap-x-2 items-center">
+          <div className="flex flex-row gap-x-2 items-center md:justify-normal justify-between">
             <span className="text-sm text-gray-400/80">BL2 32452395</span>
             <Badge variant="badgecard" className="">
               Regular

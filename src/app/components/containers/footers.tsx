@@ -10,7 +10,7 @@ interface IFootersProps {
 const Footers: React.FunctionComponent<IFootersProps> = ({ className }) => {
   const { t } = useTranslation();
   return (
-    <div className={cn(["bg-[#175399] py-5 px-5", className])}>
+    <div className={cn(["bg-[#175399] py-5 px-5 md:block hidden", className])}>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-5">
         <div className="flex justify-start items-center">
           <svg

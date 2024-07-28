@@ -15,6 +15,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -37,6 +47,12 @@ import {
 import { useRouter } from "next/navigation";
 import Footers from "../components/containers/footers";
 import Image from "next/image";
+import Arrival from "./components/Arrival";
+import Departure from "./components/Departure";
+import LeavingDate from "./components/leaving-date";
+import ReturnDate from "./components/return-date";
+import Passenger from "./components/passenger";
+import { Search } from "lucide-react";
 
 interface IAvailableBoatProps {}
 
@@ -72,13 +88,13 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
         <h3 className="text-[32px] font-bold text-[#175399] my-16">
           Hasil Pencarian kamu
         </h3>
-        <div className="grid grid-rows-1 grid-cols-3 gap-x-10 mb-10">
-          <div className="grid grid-rows-1 col-span-1 gap-y-5 h-min">
+        <div className="grid grid-rows-1 md:grid-cols-3 grid-cols-1 gap-x-10 mb-10">
+          <div className="grid-rows-1 col-span-1 gap-y-5 h-min md:grid hidden">
             {/* <div className="border py-8 px-6 rounded-2xl shadow-md space-y-5">
             dsgfsdgsdfsdfsdf
           </div> */}
           </div>
-          <div className="grid grid-rows-1 col-span-2 gap-y-5 h-min">
+          <div className="grid grid-rows-1 col-span-2  gap-y-5 h-min">
             <div>
               <h3 className="font-semibold text-2xl">
                 Tiket Yang Tersedia{" "}
@@ -87,9 +103,9 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
                 </span>
               </h3>
             </div>
-            <div className="bg-gradient-to-r from-cyan-500 to-blue-500 shadow-lg py-8 px-6 flex flex-col rounded-xl">
-              <div className="bg-white/20 py-5 px-8 w-full rounded-xl space-y-3">
-                <div className="flex justify-between">
+            <div className="bg-gradient-to-r from-cyan-500 to-blue-500 w-full shadow-lg md:py-8 py-4 md:px-6 px-4 rounded-xl">
+              <div className="bg-white/20 py-5 md:px-8 px-4 w-full rounded-xl space-y-3">
+                <div className="grid md:flex md:justify-between grid-cols-1 md:space-y-0 space-y-3">
                   <div className="flex flex-row gap-x-5 font-bold items-center text-lg">
                     <h3 className="capitalize">{state?.arrival}</h3>
                     <svg
@@ -106,230 +122,68 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
                     </svg>
                     <h3 className="capitalize">{state.departure}</h3>
                   </div>
-                  <div className="flex flex-row gap-x-3 items-center">
+                  <div className="flex md:flex-row gap-x-3 md:items-center items-start">
                     <span>
                       {dateFormat(state.leavingDate || "", "ddd DD MMM YYYY")}
                     </span>
                     <Separator orientation="vertical" className="bg-white/20" />
                     <span>{state.passeger} passegers</span>
-                    <Separator orientation="vertical" className="bg-white/20" />
-                    <span>Regular</span>
+                    <Separator
+                      orientation="vertical"
+                      className="bg-white/20 md:block hidden"
+                    />
+                    <span className="md:block hidden">Regular</span>
                   </div>
-                  <div>
+                  <div className="md:hidden block">
+                    <Drawer>
+                      <DrawerTrigger asChild>
+                        <Button className="bg-[#175399] w-full">
+                          Change search
+                        </Button>
+                      </DrawerTrigger>
+                      <DrawerContent>
+                        <div className="grid grid-cols-1 gap-4 mb-4">
+                          <Arrival data={dataRegion} />
+                          <Departure data={dataRegion} />
+                          <LeavingDate
+                            isSwitch={isSwitch}
+                            setIsSwitch={setIsSwitch}
+                          />
+                          <ReturnDate isSwitch={isSwitch} />
+                          <Passenger />
+                        </div>
+                        <DrawerFooter>
+                          <Button className="md:w-1/2 w-full py-5 bg-[#175399]">
+                            <Image
+                              width={20}
+                              height={20}
+                              src="/images/form-filter-boats/search-button.svg"
+                              alt="icon-search"
+                              className="mr-2"
+                            />
+                            Search Ship
+                          </Button>
+                        </DrawerFooter>
+                      </DrawerContent>
+                    </Drawer>
+                  </div>
+                  <div className="md:block hidden">
                     <Dialog>
                       <DialogTrigger asChild>
-                        <Button className="bg-[#175399]">Change search</Button>
+                        <Button className="bg-[#175399] w-full">
+                          Change search
+                        </Button>
                       </DialogTrigger>
                       <DialogContent className="min-w-max">
                         <div className="grid grid-cols-2 gap-4 mb-4">
-                          <div className="flex items-center bg-white p-4 rounded-lg shadow-sm">
-                            <IconsSelection type="icondeparture" />
-                            <FieldSelections
-                              data={dataRegion}
-                              onValueChange={(val: string) =>
-                                dispatch(searchBoat({ departure: val }))
-                              }
-                              placeholder="Berangkat"
-                              title="Berangkat"
-                              value={state.departure || ""}
-                            />
-                          </div>
-                          <div className="flex items-center bg-white p-4 rounded-lg shadow-sm">
-                            <IconsSelection type="iconarrival" />
-                            <FieldSelections
-                              data={dataRegion}
-                              onValueChange={(val: string) =>
-                                dispatch(searchBoat({ arrival: val }))
-                              }
-                              placeholder="Tujuan"
-                              title="Tujuan"
-                              value={state.arrival || ""}
-                            />
-                          </div>
-                          <div className="flex items-center bg-white p-4 rounded-lg shadow-sm gap-4">
-                            <IconsDate type="leavingdate" />
-                            <FieldDates
-                              title="Pilih Tanggal Pergi"
-                              disabled={(date) => date < new Date(Date.now())}
-                              onSelect={(day: any) => {
-                                if (day) {
-                                  dispatch(
-                                    searchBoat({
-                                      leavingDate: day.toISOString(),
-                                    })
-                                  );
-                                }
-                              }}
-                              selected={
-                                state.leavingDate
-                                  ? new Date(state.leavingDate)
-                                  : new Date(Date.now())
-                              }
-                            >
-                              <div className="text-lg">
-                                {state.leavingDate ? (
-                                  dateFormat(state.leavingDate, "DD MMM YYYY")
-                                ) : (
-                                  <span>
-                                    {dateFormat(
-                                      new Date(Date.now()),
-                                      "DD MMM YYYY"
-                                    )}
-                                  </span>
-                                )}
-                              </div>
-                            </FieldDates>
-
-                            <div className="ml-auto text-center space-y-3">
-                              <p className="text-gray-400/45 text-[15px]">
-                                Pulang Pergi
-                              </p>
-                              <Switch
-                                id="add as passenger"
-                                checked={isSwitch}
-                                onCheckedChange={handleSwitchButton}
-                              />
-                            </div>
-                          </div>
-                          <div
-                            className={cn([
-                              "flex items-center bg-white p-4 rounded-lg shadow-sm",
-                              !isSwitch && "hidden",
-                            ])}
-                          >
-                            <IconsDate type="returndate" />
-                            <FieldDates
-                              disabled={(date) => {
-                                const leaveDate = new Date(
-                                  state.leavingDate
-                                    ? state.leavingDate
-                                    : Date.now()
-                                );
-                                return date <= leaveDate;
-                              }}
-                              onSelect={(day: any) => {
-                                if (day) {
-                                  dispatch(
-                                    searchBoat({
-                                      returnDate: day.toISOString(),
-                                    })
-                                  );
-                                }
-                              }}
-                              selected={
-                                state.returnDate
-                                  ? new Date(state.returnDate)
-                                  : new Date(
-                                      state.leavingDate
-                                        ? state.leavingDate
-                                        : Date.now()
-                                    )
-                              }
-                              title="Pilih Tangal Pulang"
-                            >
-                              <div className="text-lg">
-                                {state.returnDate ? (
-                                  dateFormat(state.returnDate, "DD MMM YYYY")
-                                ) : (
-                                  <span>
-                                    {dateFormat(
-                                      new Date(
-                                        state.leavingDate
-                                          ? state.leavingDate
-                                          : Date.now()
-                                      ),
-                                      "DD MMM YYYY"
-                                    )}
-                                  </span>
-                                )}
-                              </div>
-                            </FieldDates>
-                          </div>
-                          <div className="flex items-center bg-white p-4 rounded-lg shadow-sm">
-                            <IconPassenger />
-                            <div>
-                              <div className="text-sm text-gray-500">
-                                Penumpang
-                              </div>
-                              <Dialog>
-                                <DialogTrigger asChild>
-                                  <span className="text-lg flex w-full cursor-pointer">
-                                    {state.adultQuantity} Dewasa{" "}
-                                    {state.childQuantity} Bayi
-                                  </span>
-                                </DialogTrigger>
-                                <DialogContent className="sm:max-w-md">
-                                  <DialogHeader>
-                                    <DialogTitle>
-                                      Atur Jumlah Penumpang
-                                    </DialogTitle>
-                                  </DialogHeader>
-                                  <div className="flex flex-col gap-y-5">
-                                    <PassengerCounter
-                                      label="Dewasa"
-                                      minQuantity={1}
-                                      quantity={state.adultQuantity}
-                                      onIncrement={() =>
-                                        dispatch(
-                                          updateQuantities({
-                                            adultQuantity:
-                                              state.adultQuantity + 1,
-                                          })
-                                        )
-                                      }
-                                      onDecrement={() =>
-                                        dispatch(
-                                          updateQuantities({
-                                            adultQuantity:
-                                              state.adultQuantity - 1,
-                                          })
-                                        )
-                                      }
-                                    />
-                                    <PassengerCounter
-                                      label={
-                                        <div className="flex flex-col gap-y-[2px]">
-                                          <span>Anak Anak</span>
-                                          <span className="text-gray-400/80 text-[13px]">
-                                            Untuk umur dibawah 3 tahun
-                                          </span>
-                                        </div>
-                                      }
-                                      minQuantity={0}
-                                      onIncrement={() =>
-                                        dispatch(
-                                          updateQuantities({
-                                            childQuantity:
-                                              state.childQuantity + 1,
-                                          })
-                                        )
-                                      }
-                                      onDecrement={() =>
-                                        dispatch(
-                                          updateQuantities({
-                                            childQuantity:
-                                              state.childQuantity - 1,
-                                          })
-                                        )
-                                      }
-                                      quantity={state.childQuantity}
-                                    />
-                                  </div>
-                                  <DialogFooter className="sm:justify-start">
-                                    <DialogClose asChild>
-                                      <Button
-                                        type="button"
-                                        className="flex w-full bg-blue-600 text-white hover:bg-blue-500"
-                                        variant="secondary"
-                                      >
-                                        Simpan
-                                      </Button>
-                                    </DialogClose>
-                                  </DialogFooter>
-                                </DialogContent>
-                              </Dialog>
-                            </div>
-                          </div>
+                          <Arrival data={dataRegion} />
+                          <Departure data={dataRegion} />
+                          <LeavingDate
+                            isSwitch={isSwitch}
+                            setIsSwitch={setIsSwitch}
+                          />
+                          <ReturnDate isSwitch={isSwitch} />
+                          <Passenger />
                         </div>
                         <DialogFooter>
                           <Button className="w-1/2 py-5 bg-[#175399]">
@@ -351,7 +205,7 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
             </div>
             <CardTicketBoat />
             <CardTicketBoat />
-            <CardTicketBoat />
+            {/* <CardTicketBoat /> */}
           </div>
         </div>
       </div>
