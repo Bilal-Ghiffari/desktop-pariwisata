@@ -1,10 +1,10 @@
 import * as React from "react";
-import { DataRegionType } from "./arrival";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/lib/store";
 import { IconsSelection } from "@/app/components/containers/form-filters-boat/icons";
 import FieldSelections from "@/app/components/containers/form-filters-boat/field-selection";
 import { searchBoat } from "@/lib/features/boatfilterSlice";
+import { DataRegionType } from "./arrival";
 
 interface IDepartureProps {
   data: DataRegionType[];

@@ -9,14 +9,23 @@ import SwitchTranslation from "./SwitchTranslation";
 
 interface INavBarProps {
   navbg?: boolean;
+  className?: string;
 }
 
-const NavBar: React.FunctionComponent<INavBarProps> = ({ navbg }) => {
+const NavBar: React.FunctionComponent<INavBarProps> = ({
+  navbg,
+  className,
+}) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { t } = useTranslation();
   return (
     <>
-      <div className="navbar items-center py-8 flex flex-row justify-between">
+      <div
+        className={cn([
+          "navbar items-center py-8 flex flex-row justify-between",
+          className,
+        ])}
+      >
         <div className="logo flex flex-row justify-center items-center gap-x-2">
           <svg
             width="40"

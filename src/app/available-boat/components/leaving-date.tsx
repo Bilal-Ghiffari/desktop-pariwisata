@@ -25,7 +25,7 @@ const LeavingDate: React.FunctionComponent<ILeavingDateProps> = ({
       dispatch(searchBoat({ returnDate: "" }));
     }
     setIsSwitch(!isSwitch);
-  }, [isSwitch]);
+  }, [isSwitch, dispatch]);
 
   React.useEffect(() => {
     if (returnDate !== "") {
