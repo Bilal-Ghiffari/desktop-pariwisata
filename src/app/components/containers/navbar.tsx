@@ -16,7 +16,7 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({
   navbg,
   className,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const { t } = useTranslation();
   return (
     <>
@@ -116,8 +116,8 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({
         id="dropdown-menu"
         onClick={() => setIsOpen(!isOpen)}
         className={cn([
-          "lg:hidden flex fixed  flex-col gap-y-16 absolute left-0 top-[60px] w-screen p-12  z-20",
-          isOpen && "hidden",
+          "lg:hidden flex fixed  flex-col gap-y-16 left-0 top-[60px] w-screen p-12  z-20",
+          !isOpen && "hidden",
         ])}
       >
         <div className="flex flex-col md:flex-row gap-x-24 gap-y-10 bg-white p-7 shadow-lg shadow-indigo-950/10 rounded-2xl">

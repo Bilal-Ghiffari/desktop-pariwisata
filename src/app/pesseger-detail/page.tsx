@@ -1,7 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { AlertCircle } from "lucide-react";
+import {
+  AlertCircle,
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  ChevronDown,
+  Dot,
+} from "lucide-react";
 import NavBar from "../components/containers/navbar";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -24,6 +31,12 @@ import { Checkbox } from "@/components/ui/checkbox";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Footers from "../components/containers/footers";
+import Link from "next/link";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 
 interface IPassegerDetailsProps {}
 
@@ -42,9 +55,74 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
 
   return (
     <>
+      <div className="md:hidden block z-10 bg-gradient-to-r from-cyan-500 h-screen to-blue-500 w-full shadow-lg  sticky top-0">
+        <div className="py-4 pl-4">
+          <div className="flex flex-row items-center">
+            <Link href="/">
+              <ArrowLeft className="w-6 h-6" />
+            </Link>
+            <h3 className="font-semibold pl-5 text-lg text-center">
+              Selesaikan Pesananmu
+            </h3>
+          </div>
+          <Carousel>
+            <CarouselContent>
+              {Array.from({ length: 2 }).map((_, index) => (
+                <CarouselItem key={index} className="basis-10/12">
+                  <div className="md:hidden bg-white rounded-xl p-3 flex flex-col mt-10 space-y-3">
+                    <div className="text-[#C5C5C5] flex justify-between items-center text-sm">
+                      <p>Senin, 29 Juli 2024</p>
+                      <ChevronDown className="w-6 h-6 text-black" />
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <p>Sanur</p>
+                      <ArrowRight className="w-5 h-5" />
+                      <p>Nusapeninda</p>
+                    </div>
+                    <div className="flex flex-row gap-x-4 text-sm text-[#C5C5C5]">
+                      <p>BLUE EXPRESS</p>
+                      <Dot />
+                      <p>REGULAR</p>
+                    </div>
+                    <p className="text-sm text-[#C5C5C5]">3 Dewasa, 1 Bayi</p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        </div>
+        <div className="bg-white w-full transform rounded-t-xl z-20 flex-1 p-4 h-screen">
+          <h2 className="text-lg font-semibold mb-5">Detail Pemesanan</h2>
+          <div className="p-8 flex flex-col border rounded-xl mb-20 w-full">
+            <div className="space-y-5">
+              <div className="flex flex-col gap-y-2">
+                <span className="text-gray-400/45">Full Name</span>
+                <h3 className="font-semibold">Bilal AL Ghiffari</h3>
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <span className="text-gray-400/45">Email</span>
+                <h3 className="font-semibold">bilalalghiffari53@gmail.com</h3>
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <span className="text-gray-400/45">No Telepon</span>
+                <h3 className="font-semibold">08242374235235</h3>
+              </div>
+            </div>
+            <div className="flex justify-between mt-10">
+              <p className="text-gray-400/45">Tambahkan sebagai penumpang</p>
+              <Switch
+                id="add as passenger"
+                checked={isSwitch}
+                onCheckedChange={handleSwitchChange}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="container mx-auto">
-        <NavBar />
-        <div className="grid grid-cols-2 gap-x-10 my-10">
+        <NavBar className="md:flex hidden" />
+
+        {/* <div className="grid grid-cols-2 gap-x-10 my-10">
           <div className="grid grid-rows-1 gap-y-5 h-min">
             <div className="p-8 flex flex-col bg-white shadow-lg rounded-[30px] mb-20 w-2/3">
               <div className="space-y-5">
@@ -201,7 +279,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <Footers />
     </>
