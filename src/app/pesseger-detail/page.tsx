@@ -1,42 +1,40 @@
 "use client";
 
-import * as React from "react";
+import { Separator } from "@/components/ui/separator";
 import {
   AlertCircle,
-  ArrowDown,
   ArrowLeft,
   ArrowRight,
   ChevronDown,
   Dot,
+  Pencil,
+  SquarePlus,
 } from "lucide-react";
+import * as React from "react";
 import NavBar from "../components/containers/navbar";
-import { Separator } from "@/components/ui/separator";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Switch } from "@/components/ui/switch";
-import { useSelector } from "react-redux";
-import { RootState } from "@/lib/store";
-import PassegerInput from "./form/form-passager-detail";
-import { usePassengerContext } from "@/services/passeger-detail/PassengerContext";
+
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import Footers from "../components/containers/footers";
-import Link from "next/link";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Switch } from "@/components/ui/switch";
+import { RootState } from "@/lib/store";
+import { cn } from "@/lib/utils";
+import { usePassengerContext } from "@/services/passeger-detail/PassengerContext";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import Footers from "../components/containers/footers";
+import { IconsSelection } from "../components/containers/form-filters-boat/icons";
+import PassegerInput from "./components/form-passager-detail-desktop";
+import FormPassagerDetailMobile from "./components/form-passager-detail-mobile";
 
 interface IPassegerDetailsProps {}
 
@@ -51,6 +49,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
 ) => {
   const { isSwitch, handleSwitchChange, passengers } = usePassengerContext();
   const [isChecked, isSetIsChecked] = React.useState<boolean>(false);
+  const { passeger } = useSelector((state: RootState) => state);
   const router = useRouter();
 
   return (
@@ -72,7 +71,78 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
                   <div className="md:hidden bg-white rounded-xl p-3 flex flex-col mt-10 space-y-3">
                     <div className="text-[#C5C5C5] flex justify-between items-center text-sm">
                       <p>Senin, 29 Juli 2024</p>
-                      <ChevronDown className="w-6 h-6 text-black" />
+                      <Drawer>
+                        <DrawerTrigger asChild>
+                          <ChevronDown className="w-6 h-6 text-black" />
+                        </DrawerTrigger>
+                        <DrawerContent className="px-4">
+                          <div className="flex flex-col space-y-3">
+                            <h3 className="font-semibold">Blue Express</h3>
+                            <div className="border p-5 rounded-xl flex flex-row gap-x-10">
+                              <div className="flex flex-col space-y-5">
+                                <div className="flex flex-col">
+                                  <p className="font-semibold">20:00</p>
+                                  <p>Sen, 29 Jul</p>
+                                </div>
+                                <p>10j 37m</p>
+                                <div className="flex flex-col">
+                                  <p className="font-semibold">20:00</p>
+                                  <p>Sen, 29 Jul</p>
+                                </div>
+                              </div>
+                              <svg
+                                width="8"
+                                height="152"
+                                viewBox="0 0 8 152"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M4 2.3295V149.67"
+                                  stroke="#006CE5"
+                                  stroke-linecap="round"
+                                  stroke-dasharray="5 5"
+                                />
+                                <ellipse
+                                  cx="4"
+                                  cy="2.3295"
+                                  rx="4"
+                                  ry="2.3295"
+                                  fill="#006CE5"
+                                />
+                                <ellipse
+                                  cx="4"
+                                  cy="149.671"
+                                  rx="4"
+                                  ry="2.3295"
+                                  fill="#006CE5"
+                                />
+                              </svg>
+
+                              <div className="flex flex-col space-y-7">
+                                <div className="flex flex-col">
+                                  <p className="font-semibold">Sanur</p>
+                                </div>
+                                <div className="flex flex-row items-center">
+                                  <IconsSelection
+                                    className="w- h-8"
+                                    type="icondeparture"
+                                  />
+                                  <p>Blue Express</p>
+                                </div>
+                                <div className="">
+                                  <p className="font-semibold">Nusapeninda</p>
+                                </div>
+                              </div>
+                            </div>
+                            <h3 className="font-semibold">Detail Harga</h3>
+                            <div className="flex justify-between">
+                              <h2>Total Harga</h2>
+                              <h2 className="font-bold mb-10">IDR. 170.000</h2>
+                            </div>
+                          </div>
+                        </DrawerContent>
+                      </Drawer>
                     </div>
                     <div className="flex justify-between items-center">
                       <p>Sanur</p>
@@ -93,7 +163,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
         </div>
         <div className="bg-white w-full transform rounded-t-xl z-20 flex-1 p-4 h-screen">
           <h2 className="text-lg font-semibold mb-5">Detail Pemesanan</h2>
-          <div className="p-8 flex flex-col border rounded-xl mb-20 w-full">
+          <div className="p-8 flex flex-col border rounded-xl mb-5 w-full">
             <div className="space-y-5">
               <div className="flex flex-col gap-y-2">
                 <span className="text-gray-400/45">Full Name</span>
@@ -117,12 +187,68 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
               />
             </div>
           </div>
+          <h2 className="text-lg font-semibold mb-4">Detail Penumpang</h2>
+          <div className="flex flex-col gap-y-5">
+            {/* {isSwitch && id === 0 ? passeger.fullname ?? "" : ""} */}
+            <div
+              className={cn([
+                "w-full p-4 bg-gray-400/10 rounded-lg flex items-center justify-between",
+              ])}
+            >
+              <div
+                className={cn([
+                  "flex",
+                  isSwitch ? "flex-col space-y-[3px]" : "",
+                ])}
+              >
+                {isSwitch ? (
+                  <>
+                    <p className="text-[14px] text-[#C5C5C5]">
+                      Penumpang 1 Dewasa
+                    </p>
+                    <h2>Bilal Al Ghiffari</h2>
+                    <p className="text-[14px] text-[#C5C5C5]">
+                      KTP - 31324234235235
+                    </p>
+                  </>
+                ) : (
+                  <h2>Penumpang 1 Dewasa</h2>
+                )}
+              </div>
+              <Drawer>
+                <DrawerTrigger asChild>
+                  <Pencil className="w-5 h-5" />
+                </DrawerTrigger>
+                <DrawerContent className="px-4">
+                  <h2 className="font-semibold">Informasi Penumpang</h2>
+                  <Drawer>
+                    <DrawerTrigger asChild>
+                      <div className="border p-4 flex flex-row items-center rounded-xl my-5">
+                        <SquarePlus className="w-5 h-5 mr-5 text-[#006CE5]" />
+                        <p className="font-semibold">Tambah Penumpang baru</p>
+                      </div>
+                    </DrawerTrigger>
+                    <DrawerContent className="px-4">
+                      <div className="flex justify-center mb-10 mt-5">
+                        <h3 className="font-semibold text-lg text-center">
+                          Tambah Penumpang Baru
+                        </h3>
+                      </div>
+                      <div className="flex flex-col gap-y-5 mb-7">
+                        <FormPassagerDetailMobile />
+                      </div>
+                    </DrawerContent>
+                  </Drawer>
+                </DrawerContent>
+              </Drawer>
+            </div>
+          </div>
         </div>
       </div>
       <div className="container mx-auto">
         <NavBar className="md:flex hidden" />
 
-        {/* <div className="grid grid-cols-2 gap-x-10 my-10">
+        <div className="grid-cols-2 gap-x-10 my-10 md:grid hidden">
           <div className="grid grid-rows-1 gap-y-5 h-min">
             <div className="p-8 flex flex-col bg-white shadow-lg rounded-[30px] mb-20 w-2/3">
               <div className="space-y-5">
@@ -279,7 +405,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
       <Footers />
     </>

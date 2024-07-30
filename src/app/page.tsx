@@ -38,7 +38,7 @@ export default function Home() {
           <div className="container mx-auto absolute top-0 left-0 right-0 z-20">
             <NavBar navbg />
             <div className="flex text-center justify-center flex-col gap-y-5 md:mt-[125px]">
-              <span className="text-[22px] font-semibold text-[#BBBDC3]">
+              <span className="text-[22px] md:mt-0 mt-20 font-semibold md:text-[#BBBDC3] text-white">
                 {t("hero.title-1")}
               </span>
               <h2 className="text-[52px] font-bold text-white md:block hidden">
