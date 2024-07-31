@@ -12,8 +12,8 @@ const SuccessPayment: React.FunctionComponent<ISuccessPaymentProps> = (
 ) => {
   const router = useRouter();
   return (
-    <div className="flex justify-center w-full items-center transform translate-y-1/4">
-      <div className="flex flex-col space-y-5 items-center justify-center mb-10">
+    <div className="flex justify-center w-full items-center transform md:translate-y-1/4 translate-y-[7%]">
+      <div className="flex flex-col space-y-5 items-center justify-center mb-10 md:mx-0 mx-5">
         <svg
           className="mb-10"
           width="189"

@@ -72,7 +72,34 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
             </div>
           </div>
         </div>
-        <div className="bg-white shadow-lg p-4 justify-between rounded-xl md:hidden flex mb-8"></div>
+        <div className="bg-white shadow-lg p-4 rounded-xl md:hidden mb-8">
+          <div className="flex justify-between">
+            <div className="space-y-4 text-[#909090] text-sm">
+              <h2>Harga Tiket</h2>
+              <h2>Jumlah Tiket</h2>
+              <h2>Biaya Admin</h2>
+              <h2>Biaya Applikasi</h2>
+            </div>
+            <div className="space-y-4 font-semibold text-sm">
+              <h2>IDR 150.0000</h2>
+              <h2>1</h2>
+              <h2>IDR 5.0000</h2>
+              <h2>IDR 1.000</h2>
+            </div>
+          </div>
+          <div className="mt-4 text-[#909090] text-sm">
+            Ticket Reguler, Sanur - Nusapenida, ( Dewasa 1x )
+          </div>
+          <Separator className="my-5 bg-[#dadada]" />
+          <div className="flex justify-between">
+            <div>
+              <h2 className="text-[#909090] text-sm">Total Payment</h2>
+            </div>
+            <div>
+              <h2 className="text-[#FF4242] text-sm font-bold">IDR 157.000</h2>
+            </div>
+          </div>
+        </div>
         {/* <div className="bg-white shadow-lg p-4 justify-between rounded-xl md:hidden flex mb-8">
           <div className="flex flex-col gap-y-4">
             <p>Nusapenida</p>
