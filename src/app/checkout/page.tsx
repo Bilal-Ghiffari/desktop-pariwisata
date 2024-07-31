@@ -72,47 +72,7 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
             </div>
           </div>
         </div>
-        <div className="bg-white shadow-lg p-4 justify-between rounded-xl md:hidden flex mb-8">
-          <div className="flex flex-col gap-y-4">
-            <p>Sanur</p>
-            <p>12:30 PM</p>
-          </div>
-          <div className="flex flex-col gap-y-4">
-            <p>15h 40m</p>
-            <p>
-              <svg
-                width="73"
-                height="9"
-                viewBox="0 0 73 9"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="4.5" cy="4.5" r="3.5" stroke="#D9E3E8" />
-                <line
-                  x1="8.5"
-                  y1="4"
-                  x2="36.5"
-                  y2="4"
-                  stroke="#D9E3E8"
-                  stroke-dasharray="4 4"
-                />
-                <line
-                  x1="36.5"
-                  y1="4"
-                  x2="64.5"
-                  y2="4"
-                  stroke="#D9E3E8"
-                  stroke-dasharray="4 4"
-                />
-                <circle cx="68.5" cy="4.5" r="4" fill="#D9E3E8" />
-              </svg>
-            </p>
-          </div>
-          <div className="flex flex-col gap-y-4">
-            <p>Nusapeninda</p>
-            <p>12:30 PM</p>
-          </div>
-        </div>
+        <div className="bg-white shadow-lg p-4 justify-between rounded-xl md:hidden flex mb-8"></div>
         {/* <div className="bg-white shadow-lg p-4 justify-between rounded-xl md:hidden flex mb-8">
           <div className="flex flex-col gap-y-4">
             <p>Nusapenida</p>
