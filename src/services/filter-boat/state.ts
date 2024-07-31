@@ -46,8 +46,16 @@ export const useFiltersBoatActions = () => {
     // Refetch the data when handleOnSubmit is called
     // refetch
     if (state.departure && state.arrival !== "") {
-      const url = `/available-boat?${queryParams}`;
-      router.push(url);
+      if (state.departure === state.arrival) {
+        toast({
+          variant: "default",
+          title: "Pilih Destinasi dulu Yuk!!",
+          description: "Maaf Keberangkatan dan Kedatangan tidak boleh sama",
+        });
+      } else {
+        const url = `/available-boat?${queryParams}`;
+        router.push(url);
+      }
     } else {
       toast({
         variant: "default",

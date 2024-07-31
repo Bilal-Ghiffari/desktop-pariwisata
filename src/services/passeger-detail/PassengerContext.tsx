@@ -30,7 +30,7 @@ export const PassengerProvider: React.FC<{ children: ReactNode }> = ({
   const [country, setCountry] = useState<string>("");
   const [isSwitch, setIsSwitch] = useState<boolean>(false);
   const { boatFilter } = useSelector((state: RootState) => state);
-
+  console.log("boatFilter", boatFilter);
   const passengers = useMemo(
     () => [
       ...Array(boatFilter.adultQuantity).fill("Dewasa"),

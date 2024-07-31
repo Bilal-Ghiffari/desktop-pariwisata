@@ -68,7 +68,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
             <CarouselContent>
               {Array.from({ length: 2 }).map((_, index) => (
                 <CarouselItem key={index} className="basis-10/12">
-                  <div className="md:hidden bg-white rounded-xl p-3 flex flex-col mt-10 space-y-3">
+                  <div className="md:hidden bg-white rounded-xl p-3 flex flex-col mt-10">
                     <div className="text-[#C5C5C5] flex justify-between items-center text-sm">
                       <p>Senin, 29 Juli 2024</p>
                       <Drawer>
@@ -144,12 +144,12 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
                         </DrawerContent>
                       </Drawer>
                     </div>
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center my-2">
                       <p>Sanur</p>
                       <ArrowRight className="w-5 h-5" />
                       <p>Nusapeninda</p>
                     </div>
-                    <div className="flex flex-row gap-x-4 text-sm text-[#C5C5C5]">
+                    <div className="flex flex-row items-end gap-x-4 text-sm text-[#C5C5C5]">
                       <p>BLUE EXPRESS</p>
                       <Dot />
                       <p>REGULAR</p>
@@ -161,7 +161,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
             </CarouselContent>
           </Carousel>
         </div>
-        <div className="bg-white w-full transform rounded-t-xl z-20 flex-1 p-4 h-screen">
+        <div className="bg-white w-full rounded-t-xl z-20 flex-1 p-4 max-h-min">
           <h2 className="text-lg font-semibold mb-5">Detail Pemesanan</h2>
           <div className="p-8 flex flex-col border rounded-xl mb-5 w-full">
             <div className="space-y-5">
@@ -188,7 +188,7 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
             </div>
           </div>
           <h2 className="text-lg font-semibold mb-4">Detail Penumpang</h2>
-          <div className="flex flex-col gap-y-5">
+          <div className="flex flex-col gap-y-5 mb-10">
             {/* {isSwitch && id === 0 ? passeger.fullname ?? "" : ""} */}
             <div
               className={cn([
@@ -243,6 +243,9 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
               </Drawer>
             </div>
           </div>
+          <Button type="button" className="py-3 bg-[#175399] hover:bg-[#356499] text-center font-bold shadow-lg rounded-full text-sm w-full" onClick={() => router.push("/checkout")}>
+            Lanjutkan
+          </Button>
         </div>
       </div>
       <div className="container mx-auto">
