@@ -12,10 +12,10 @@ import { RootState } from "@/lib/store";
 
 interface PassengerContextType {
   passengers: string[];
-  country: string;
+  typeId: string[];
   isSwitch: boolean;
   passengerTypes: string[];
-  setCountry: (value: string) => void;
+  setTypeID: (index: number, value: string) => void;
   handleTypeChange: (index: number, value: string) => void;
   handleSwitchChange: () => void;
 }
@@ -27,7 +27,6 @@ const PassengerContext = createContext<PassengerContextType | undefined>(
 export const PassengerProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [country, setCountry] = useState<string>("");
   const [isSwitch, setIsSwitch] = useState<boolean>(false);
   const { boatFilter } = useSelector((state: RootState) => state);
 
@@ -36,14 +35,32 @@ export const PassengerProvider: React.FC<{ children: ReactNode }> = ({
       ...Array(boatFilter.adultQuantity).fill("Dewasa"),
       ...Array(boatFilter.childQuantity).fill("Bayi"),
     ],
-    [boatFilter]
+    [boatFilter.adultQuantity, boatFilter.childQuantity]
   );
 
-  const [passengerTypes, setPassengerTypes] = useState(
+  const [passengerTypes, setPassengerTypes] = useState<string[]>(
     passengers.map((type, id) =>
       id === 0 && isSwitch ? type.toLowerCase() : ""
     )
   );
+
+  const [typeId, setTypeId] = useState<string[]>(passengers.map(() => ""));
+
+  React.useEffect(() => {
+    setPassengerTypes(
+      passengers.map((type, id) =>
+        id === 0 && isSwitch ? type.toLowerCase() : ""
+      )
+    );
+  }, [isSwitch, passengers]);
+
+  const setTypeID = useCallback((index: number, value: string) => {
+    setTypeId((prevCountries) => {
+      const newCountries = [...prevCountries];
+      newCountries[index] = value;
+      return newCountries;
+    });
+  }, []);
 
   const handleTypeChange = useCallback((index: number, value: string) => {
     setPassengerTypes((prevTypes) => {
@@ -54,25 +71,17 @@ export const PassengerProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   const handleSwitchChange = useCallback(() => {
-    setIsSwitch((prevChecked) => {
-      const newChecked = !prevChecked;
-      setPassengerTypes(
-        passengers.map((type, id) =>
-          id === 0 && newChecked ? type.toLowerCase() : ""
-        )
-      );
-      return newChecked;
-    });
-  }, [passengers]);
+    setIsSwitch((prevChecked) => !prevChecked);
+  }, []);
 
   return (
     <PassengerContext.Provider
       value={{
         passengers,
-        country,
+        typeId,
         isSwitch,
         passengerTypes,
-        setCountry,
+        setTypeID,
         handleTypeChange,
         handleSwitchChange,
       }}
