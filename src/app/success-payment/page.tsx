@@ -26,9 +26,9 @@ const SuccessPayment: React.FunctionComponent<ISuccessPaymentProps> = (
           <path
             d="M69.5046 95.6195L86.2948 112.403L119.861 78.8364"
             stroke="#FEFEFF"
-            stroke-width="10.6088"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="10.6088"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
           <circle cx="162" cy="43" r="7" fill="#3079D9" />
           <circle cx="79.5" cy="4.5" r="4.5" fill="#3079D9" />
@@ -67,7 +67,7 @@ const SuccessPayment: React.FunctionComponent<ISuccessPaymentProps> = (
           </div>
         </div>
         <Button
-          className="w-full py-7 bg-[#175399] hover:bg-[#356499] text-white font-bold shadow-lg rounded-full text-lg"
+          className="w-full md:py-7 py-3 bg-[#175399] hover:bg-[#356499] text-white font-bold shadow-lg rounded-full md:text-lg text-sm"
           onClick={() => router.replace(`/ticket`)}
         >
           See Order List

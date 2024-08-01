@@ -33,7 +33,7 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto">
+      <div className="md:container px-4 md:mx-auto mx-0">
         <NavBar className="md:flex hidden" />
         <div className="justify-between my-10 items-center md:hidden flex">
           <h3 className="text-[16px] font-bold">Complete Payment in</h3>
@@ -179,7 +179,7 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
                     fill="#3079D9"
                   />
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     clipRule="evenodd"
                     d="M20.9902 7C20.9967 7.08042 21 7.16136 21 7.24264V15C21 16.6569 19.6569 18 18 18H10C8.34315 18 7 16.6569 7 15V5C7 3.34315 8.34315 2 10 2H15.7574C15.8386 2 15.9196 2.0033 16 2.00982V2L16.0107 2.01071C16.7136 2.07025 17.3761 2.3761 17.8787 2.87868L20.1213 5.12132C20.6239 5.6239 20.9298 6.28645 20.9893 6.98929L21 7H20.9902ZM18 16H10C9.44772 16 9 15.5523 9 15V5C9 4.44772 9.44772 4 10 4H15.7574C15.8399 4 15.9213 4.01019 16 4.02988V5C16 6.10457 16.8954 7 18 7H18.9701C18.9898 7.07871 19 7.16015 19 7.24264V15C19 15.5523 18.5523 16 18 16Z"
                     fill="#3079D9"
@@ -255,7 +255,7 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
         <Button
           type="button"
           className="py-3 bg-[#175399] md:hidden text-center hover:bg-[#356499] font-bold shadow-lg rounded-full text-sm w-full mb-5"
-          onClick={() => router.push("/checkout")}
+          onClick={() => router.push("/success-payment")}
         >
           Confirm Payment
         </Button>
@@ -332,7 +332,7 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
                         fill="#3079D9"
                       />
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         clipRule="evenodd"
                         d="M20.9902 7C20.9967 7.08042 21 7.16136 21 7.24264V15C21 16.6569 19.6569 18 18 18H10C8.34315 18 7 16.6569 7 15V5C7 3.34315 8.34315 2 10 2H15.7574C15.8386 2 15.9196 2.0033 16 2.00982V2L16.0107 2.01071C16.7136 2.07025 17.3761 2.3761 17.8787 2.87868L20.1213 5.12132C20.6239 5.6239 20.9298 6.28645 20.9893 6.98929L21 7H20.9902ZM18 16H10C9.44772 16 9 15.5523 9 15V5C9 4.44772 9.44772 4 10 4H15.7574C15.8399 4 15.9213 4.01019 16 4.02988V5C16 6.10457 16.8954 7 18 7H18.9701C18.9898 7.07871 19 7.16015 19 7.24264V15C19 15.5523 18.5523 16 18 16Z"
                         fill="#3079D9"

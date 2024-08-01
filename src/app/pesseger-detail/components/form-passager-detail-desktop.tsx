@@ -1,5 +1,6 @@
 "use client";
 
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -28,18 +29,18 @@ const initialState: ActionResult = {
 };
 
 const AllCountry = [
-  { label: "Indonesia", value: "indonesia" },
-  { label: "Jamaica", value: "jamaica" },
-  { label: "Amerika", value: "amerika" },
+  { label: "KTP", value: "ktp" },
+  { label: "Passpor", value: "passpor" },
 ];
 
 const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
   id,
   type,
 }) => {
-  const { isSwitch, setCountry, country, passengerTypes, handleTypeChange } =
+  const { isSwitch, setTypeID, typeId, passengerTypes, handleTypeChange } =
     usePassengerContext();
   const { passeger } = useSelector((state: RootState) => state);
+  console.log(typeId);
 
   return (
     <div className="">
@@ -61,35 +62,28 @@ const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
             />
           </div>
           <div className="flex flex-row gap-x-2">
-            <Select onValueChange={(val) => setCountry(val)}>
-              <SelectTrigger className="w-[280px] h-12">
-                <SelectValue placeholder="Kewarganegaraan" />
+            <Select onValueChange={(val) => setTypeID(id, val)}>
+              <SelectTrigger className="px-[16px] py-3 h-full">
+                <SelectValue placeholder="Tipe ID" />
               </SelectTrigger>
               <SelectContent>
-                <SelectGroup>
-                  {AllCountry.map((item) => (
-                    <SelectItem value={item.value} key={item.value}>
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
+                {AllCountry.map((item, i) => (
+                  <SelectItem key={item.label + i} value={item.value}>
+                    {item.label}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
-            {country === "indonesia" ? (
-              <input
-                type="text"
-                className="px-[16px] py-4 h-12 rounded-[8px] border border-[#999999] focus:outline-none"
-                placeholder="Nomor Ktp/Nik"
-                name="IcNomor"
-              />
-            ) : (
-              <input
-                type="text"
-                className="px-[16px] py-4 h-12 rounded-[8px] border border-[#999999] focus:outline-none"
-                placeholder="Nomor Paspor"
-                name="nomorPaspor"
-              />
-            )}
+
+            <Input
+              className="px-[16px] py-3 rounded-[8px] border"
+              placeholder={typeId[id] === "ktp" ? "Nomor Indentitas" : "Paspor"}
+              name={typeId[id] === "ktp" ? "nomorIndentitas" : "noPaspor"}
+              type="number"
+              id={typeId[id] === "ktp" ? "nomorIndentitas" : "noPaspor"}
+              required
+            />
+
             <Select
               value={passengerTypes[id]}
               onValueChange={(val) => handleTypeChange(id, val)}

@@ -38,12 +38,6 @@ import FormPassagerDetailMobile from "./components/form-passager-detail-mobile";
 
 interface IPassegerDetailsProps {}
 
-const AllCountry = [
-  { label: "Indonesia", value: "indonesia" },
-  { label: "Jamaica", value: "jamaica" },
-  { label: "Amerika", value: "amerika" },
-];
-
 const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
   props
 ) => {
@@ -243,7 +237,11 @@ const PassegerDetails: React.FunctionComponent<IPassegerDetailsProps> = (
               </Drawer>
             </div>
           </div>
-          <Button type="button" className="py-3 bg-[#175399] hover:bg-[#356499] text-center font-bold shadow-lg rounded-full text-sm w-full" onClick={() => router.push("/checkout")}>
+          <Button
+            type="button"
+            className="py-3 bg-[#175399] hover:bg-[#356499] text-center font-bold shadow-lg rounded-full text-sm w-full"
+            onClick={() => router.push("/checkout")}
+          >
             Lanjutkan
           </Button>
         </div>

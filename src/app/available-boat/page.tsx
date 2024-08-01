@@ -111,7 +111,7 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto">
+      <div className="md:container p-4 md:mx-auto mx-0">
         <NavBar className="md:flex hidden" />
         <h3 className="text-[32px] md:block hidden font-bold text-[#175399] my-16">
           Hasil Pencarian kamu
