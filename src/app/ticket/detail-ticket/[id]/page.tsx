@@ -222,7 +222,7 @@ const DetailTicket: React.FunctionComponent<IDetailTicketProps> = (props) => {
                                 state.passeger > 1 ? "basis-11/12" : "",
                               ])}
                             >
-                              <div className="p-4 mt-10 bg-gradient-to-r max-w-max min-h-max from-[#3079D9] to-[#1E73E4] rounded-xl">
+                              <div className="p-4 mt-8 bg-gradient-to-r max-w-max min-h-max from-[#3079D9] to-[#1E73E4] rounded-xl">
                                 <div className="flex justify-between text-[#FEFEFF]">
                                   <div className="flex flex-col gap-y-4">
                                     <p className="font-bold">Nusapenida</p>

@@ -31,6 +31,16 @@ import ReturnDate from "./components/return-date";
 import Departure from "./components/departure";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface IAvailableBoatProps {}
 
@@ -118,9 +128,62 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
         </h3>
         <div className="grid grid-rows-1 md:grid-cols-3 grid-cols-1 gap-x-10 mb-10 sticky top-0">
           <div className="grid-rows-1 col-span-1 gap-y-5 h-min md:grid hidden">
-            {/* <div className="border py-8 px-6 rounded-2xl shadow-md space-y-5">
-            dsgfsdgsdfsdfsdf
-          </div> */}
+            <div className="border py-8 px-6 rounded-2xl shadow-md space-y-5">
+              <div className="flex flex-col gap-y-4 w-full">
+                <Label htmlFor="priceRange" className="font-semibold text-lg">
+                  Price Range
+                </Label>
+                <Input
+                  className="px-[16px] py-3 rounded-[8px] border"
+                  placeholder="IDR Maximum"
+                  name="priceRange"
+                  type="number"
+                  id="priceRange"
+                  required
+                />
+                <Input
+                  className="px-[16px] py-3 rounded-[8px] border"
+                  placeholder="IDR Maximum"
+                  name="priceRange"
+                  type="number"
+                  id="priceRange"
+                  required
+                />
+              </div>
+              <div className="flex flex-col gap-y-5 w-full">
+                <Label htmlFor="priceRange" className="font-semibold text-lg">
+                  Cari Armada
+                </Label>
+                {/* <Select>
+                  <SelectTrigger className="px-[16px] py-3 h-full">
+                    <SelectValue placeholder="Search Armada" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="light">Blue Water Express</SelectItem>
+                    <SelectItem value="dark">Cakalang</SelectItem>
+                  </SelectContent>
+                </Select> */}
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="terms" />
+                  <label
+                    htmlFor="terms"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Blue Water Express
+                  </label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="terms" />
+                  <label
+                    htmlFor="terms"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Cikalang
+                  </label>
+                </div>
+                <Button variant="outline">Reset</Button>
+              </div>
+            </div>
           </div>
           <div className="grid grid-rows-1 col-span-2  gap-y-5 h-min">
             <div className="md:mt-0 mt-10">

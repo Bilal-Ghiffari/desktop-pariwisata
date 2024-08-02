@@ -27,7 +27,7 @@ export default function Home() {
   const { t } = useTranslation();
   return (
     <>
-      <div>
+      <div className="md:h-full h-[700px]">
         <div className="w-full h-[704px] relative">
           <div className="absolute inset-0 bg-black opacity-30 z-10"></div>
           <img

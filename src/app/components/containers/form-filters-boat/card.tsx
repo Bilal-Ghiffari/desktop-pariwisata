@@ -57,7 +57,7 @@ const CardFilterBoat: React.FunctionComponent<ICardFilterBoatProps> = (
     { name: "Labuan Bajo", value: "LabuanBajo" },
   ];
   return (
-    <div className="md:max-w-4xl max-w-sm relative z-20 md:mx-auto mt-10 bg-white shadow-lg rounded-lg p-6 transform md:-translate-x-6 translate-x-[0.8rem] md:-translate-y-[13.5rem] -translate-y-[21.5rem] top-5 drop-shadow-lg">
+    <div className=" md:max-w-4xl max-w-sm relative z-20 md:mx-auto mt-10 bg-white shadow-lg rounded-lg p-6 transform md:-translate-x-6 translate-x-[0.8rem] md:-translate-y-[13.5rem] -translate-y-[29.5rem] top-5 drop-shadow-lg">
       <div className="flex mb-4">
         <button className="px-4 py-2 bg-blue-600 text-white rounded-l-lg focus:outline-none">
           {t("hero.card-title-filter")}
