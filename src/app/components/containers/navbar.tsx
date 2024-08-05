@@ -120,7 +120,7 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({
           !isOpen && "hidden",
         ])}
       >
-        <div className="flex flex-col md:flex-row gap-x-24 gap-y-10 bg-white p-7 shadow-lg shadow-indigo-950/10 rounded-2xl">
+        <div className="flex flex-col md:flex-row gap-x-24 gap-y-10 z-10 bg-white p-7 shadow-lg shadow-indigo-950/10 rounded-2xl">
           <div className="flex flex-col gap-y-4 ">
             <ul className="flex flex-col gap-y-5">
               <NavItem link="/" name="Home" navbg={navbg} />
