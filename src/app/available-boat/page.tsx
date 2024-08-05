@@ -17,41 +17,49 @@ import {
 } from "@/components/ui/drawer";
 
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { RootState } from "@/lib/store";
+import {
+  addFilters,
+  filterBoat,
+  removeFilter,
+  resetFilter,
+  toggleFleet,
+} from "@/lib/features/boatfilterSlice";
+import { AppDispatch, RootState } from "@/lib/store";
 import { dateFormat } from "@/utils";
+import { ArrowLeft, SlidersHorizontal, X } from "lucide-react";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
 import CardTicketBoat from "../components/containers/card-ticket-boat";
 import Footers from "../components/containers/footers";
 import Arrival from "./components/arrival";
+import Departure from "./components/departure";
 import LeavingDate from "./components/leaving-date";
 import Passenger from "./components/passenger";
 import ReturnDate from "./components/return-date";
-import Departure from "./components/departure";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
 
 interface IAvailableBoatProps {}
 
 const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
   const state = useSelector((state: RootState) => state.boatFilter);
+  console.log(state);
+  const dispatch = useDispatch<AppDispatch>();
   const [isSwitch, setIsSwitch] = React.useState<boolean>(false);
   const dataRegion = [
     { name: "Gilimanuk", value: "gilimanuk" },
     { name: "Merak", value: "merak" },
     { name: "Nusapeninda", value: "nusapeninda" },
     { name: "Labuan Bajo", value: "LabuanBajo" },
+  ];
+
+  const armadaBoat = [
+    { id: "Blue Express", value: "blue express" },
+    { id: "Kualama", value: "kualama" },
+    { id: "Cikalang", value: "cikalang" },
   ];
 
   return (
@@ -136,17 +144,27 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
                 <Input
                   className="px-[16px] py-3 rounded-[8px] border"
                   placeholder="IDR Maximum"
-                  name="priceRange"
+                  name="maximumPrice"
                   type="number"
-                  id="priceRange"
+                  id="maximumPrice"
+                  value={state.maximumPrice!!}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    const value = e.target.value ? e.target.value : "";
+                    dispatch(filterBoat({ maximumPrice: value }));
+                  }}
                   required
                 />
                 <Input
                   className="px-[16px] py-3 rounded-[8px] border"
                   placeholder="IDR Maximum"
-                  name="priceRange"
+                  name="manimumPrice"
                   type="number"
-                  id="priceRange"
+                  id="manimumPrice"
+                  value={state.minimumPrice}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    const value = e.target.value ? e.target.value : "";
+                    dispatch(filterBoat({ minimumPrice: value }));
+                  }}
                   required
                 />
               </div>
@@ -154,34 +172,34 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
                 <Label htmlFor="priceRange" className="font-semibold text-lg">
                   Cari Armada
                 </Label>
-                {/* <Select>
-                  <SelectTrigger className="px-[16px] py-3 h-full">
-                    <SelectValue placeholder="Search Armada" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="light">Blue Water Express</SelectItem>
-                    <SelectItem value="dark">Cakalang</SelectItem>
-                  </SelectContent>
-                </Select> */}
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="terms" />
-                  <label
-                    htmlFor="terms"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                {armadaBoat.map((item, index) => (
+                  <div
+                    className="flex items-center space-x-2"
+                    key={`${item.id}-${index}`}
                   >
-                    Blue Water Express
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="terms" />
-                  <label
-                    htmlFor="terms"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Cikalang
-                  </label>
-                </div>
-                <Button variant="outline">Reset</Button>
+                    <Checkbox
+                      id="terms"
+                      checked={state.armada.includes(item.id)}
+                      onCheckedChange={() => dispatch(toggleFleet(item.id))}
+                    />
+                    <label
+                      htmlFor="terms"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      {item.value}
+                    </label>
+                  </div>
+                ))}
+                <Button className="" onClick={() => dispatch(addFilters())}>
+                  Apply Filter
+                </Button>
+                <Button
+                  variant="outline"
+                  className="mb-5"
+                  onClick={() => dispatch(resetFilter())}
+                >
+                  Reset
+                </Button>
               </div>
             </div>
           </div>
@@ -192,6 +210,151 @@ const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
                 <span className="text-gray-400/80 text-sm font-normal">
                   3 Tiket Tersedia
                 </span>
+                <Drawer>
+                  <DrawerTrigger
+                    asChild
+                    className="mt-5 md:hidden flex justify-end"
+                  >
+                    <Button
+                      className="flex gap-x-3 font-semibold"
+                      variant="outline"
+                    >
+                      <SlidersHorizontal className="w-5 h-5" />
+                      Filter
+                    </Button>
+                  </DrawerTrigger>
+                  <DrawerContent className="px-4">
+                    <div className="flex flex-col gap-y-5 w-full">
+                      <div className="flex flex-col gap-y-5 w-full">
+                        <Label
+                          htmlFor="priceRange"
+                          className="font-semibold text-lg"
+                        >
+                          Cari Armada
+                        </Label>
+                        {armadaBoat.map((item, index) => (
+                          <div
+                            className="flex items-center space-x-2"
+                            key={`${item.id}-${index}`}
+                          >
+                            <Checkbox
+                              id="terms"
+                              checked={state.armada.includes(item.id)}
+                              onCheckedChange={() =>
+                                dispatch(toggleFleet(item.id))
+                              }
+                            />
+                            <label
+                              htmlFor="terms"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              {item.value}
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex flex-col gap-y-4 w-full">
+                        <Label
+                          htmlFor="priceRange"
+                          className="font-semibold text-lg"
+                        >
+                          Price Range
+                        </Label>
+                        <Input
+                          className="px-[16px] py-3 rounded-[8px] border"
+                          placeholder="IDR Maximum"
+                          name="maximumPrice"
+                          type="number"
+                          id="maximumPrice"
+                          value={state.maximumPrice!!}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            const value = e.target.value ? e.target.value : "";
+                            dispatch(filterBoat({ maximumPrice: value }));
+                          }}
+                          required
+                        />
+                        <Input
+                          className="px-[16px] py-3 rounded-[8px] border"
+                          placeholder="IDR Maximum"
+                          name="manimumPrice"
+                          type="number"
+                          id="manimumPrice"
+                          value={state.minimumPrice}
+                          onChange={(
+                            e: React.ChangeEvent<HTMLInputElement>
+                          ) => {
+                            const value = e.target.value ? e.target.value : "";
+                            dispatch(filterBoat({ minimumPrice: value }));
+                          }}
+                          required
+                        />
+                      </div>
+                      <Button
+                        className=""
+                        onClick={() => dispatch(addFilters())}
+                      >
+                        Apply Filter
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="mb-5"
+                        onClick={() => dispatch(resetFilter())}
+                      >
+                        Reset
+                      </Button>
+                    </div>
+                  </DrawerContent>
+                </Drawer>
+                <div className="flex flex-wrap mt-5 gap-2">
+                  {state.stateFilters.length === 0 ? (
+                    <></>
+                  ) : (
+                    state.stateFilters.map((filter) => {
+                      if (filter.value !== "" && filter.key !== "armada") {
+                        return (
+                          <div
+                            key={filter.key}
+                            className="p-3 bg-[#f7f7f7] text-[13px] mr-3 flex flex-row gap-x-2 rounded-full items-center"
+                          >
+                            <p>{filter.value}</p>
+                            <X
+                              className="w-4 h-4"
+                              onClick={() =>
+                                dispatch(removeFilter({ key: filter.key }))
+                              }
+                            />
+                          </div>
+                        );
+                      } else if (filter.key === "armada") {
+                        return filter.value.map(
+                          (armada: string, index: number) => (
+                            <div
+                              key={`${filter.key}-${index}`}
+                              className="p-3 bg-[#f7f7f7] text-[13px] mr-3 flex flex-row gap-x-2 rounded-full items-center"
+                            >
+                              <p>{armada}</p>
+                              <X
+                                className="w-4 h-4"
+                                onClick={() =>
+                                  dispatch(
+                                    removeFilter({
+                                      key: "armada",
+                                      value: armada,
+                                    })
+                                  )
+                                }
+                              />
+                            </div>
+                          )
+                        );
+                      } else {
+                        return <></>;
+                      }
+                    })
+                  )}
+                </div>
               </h3>
             </div>
             <div className="md:block hidden bg-gradient-to-r from-cyan-500 to-blue-500 w-full shadow-lg md:py-8 py-4 md:px-6 px-4 rounded-xl">
