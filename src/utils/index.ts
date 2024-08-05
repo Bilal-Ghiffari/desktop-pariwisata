@@ -25,13 +25,3 @@ export const objectToParams = (obj: { [key: string]: unknown }) => {
 
   return queryParams;
 };
-
-function debounce(func: Function, delay: number) {
-  let timer: ReturnType<typeof setTimeout>;
-  return function (...args: any[]) {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      func(...args);
-    }, delay);
-  };
-}
