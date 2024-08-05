@@ -33,10 +33,15 @@ const FieldDates: React.FunctionComponent<IFieldDatesProps> = ({
   selected,
   title,
 }) => {
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
   return (
     <div>
       <div className="text-sm text-gray-500">{title}</div>
-      <Popover>
+      <Popover
+        onOpenChange={() => setIsOpen(!isOpen)}
+        open={isOpen}
+        modal={isOpen}
+      >
         <PopoverTrigger asChild>{children}</PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
           <Calendar
