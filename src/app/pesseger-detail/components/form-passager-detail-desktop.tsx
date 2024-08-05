@@ -40,7 +40,6 @@ const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
   const { isSwitch, setTypeID, typeId, passengerTypes, handleTypeChange } =
     usePassengerContext();
   const { passeger } = useSelector((state: RootState) => state);
-  console.log(typeId);
 
   return (
     <div className="">

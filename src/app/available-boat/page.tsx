@@ -46,7 +46,6 @@ interface IAvailableBoatProps {}
 
 const AvailableBoat: React.FunctionComponent<IAvailableBoatProps> = (props) => {
   const state = useSelector((state: RootState) => state.boatFilter);
-  console.log(state);
   const dispatch = useDispatch<AppDispatch>();
   const [isSwitch, setIsSwitch] = React.useState<boolean>(false);
   const dataRegion = [

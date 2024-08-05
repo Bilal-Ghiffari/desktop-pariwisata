@@ -36,7 +36,6 @@ interface IDetailTicketProps {}
 // grid md:grid-cols-2  sm:grid-cols-1
 const DetailTicket: React.FunctionComponent<IDetailTicketProps> = (props) => {
   const state = useSelector((state: RootState) => state.boatFilter);
-  console.log(state.passeger);
   return (
     <>
       <div className="md:hidden block z-10 bg-gradient-to-r from-cyan-500 h-max to-blue-500 w-full shadow-lg  sticky top-0">
