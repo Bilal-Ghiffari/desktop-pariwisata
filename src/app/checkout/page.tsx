@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import Footers from "../components/containers/footers";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
 
 interface ICheckOutProps {}
 
@@ -160,7 +161,13 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
           <div className="flex flex-col gap-y-3">
             <div className="flex flex-row gap-x-4">
               <div className="flex items-center">
-                <img src="/images/briva 3.png" className="w-10 h-3" alt="" />
+                <Image
+                  src="/images/briva 3.png"
+                  width={40}
+                  height={12}
+                  className="w-10 h-3"
+                  alt=""
+                />
               </div>
               <h3 className="font-semibold text-sm">BRIVA (Virtual Account)</h3>
             </div>
@@ -308,7 +315,13 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
             <div className="mt-5">
               <div className="flex flex-row gap-x-4 mt-2">
                 <div className="flex items-center">
-                  <img src="/images/briva 3.png" className="w-10 h-3" alt="" />
+                  <Image
+                    width={40}
+                    height={12}
+                    src="/images/briva 3.png"
+                    className="w-10 h-3"
+                    alt=""
+                  />
                 </div>
                 <h3 className="font-semibold text-lg">
                   BRIVA (Virtual Account)

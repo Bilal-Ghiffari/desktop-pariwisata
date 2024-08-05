@@ -283,8 +283,10 @@ const DetailTicket: React.FunctionComponent<IDetailTicketProps> = (props) => {
                                 <div className="p-4 bg-[#FFFFFF] rounded-xl mt-5 max-w-max">
                                   <div className="flex flex-row gap-x-4 items-center">
                                     <div className="flex items-center">
-                                      <img
+                                      <Image
                                         src="/images/Blue Water Express 1.png"
+                                        width={56}
+                                        height={56}
                                         className="w-14 h-14"
                                         alt=""
                                       />
@@ -334,9 +336,12 @@ const DetailTicket: React.FunctionComponent<IDetailTicketProps> = (props) => {
                                     Pindai Kode ini pada saat Masuk
                                   </h2>
                                   <div className="mt-7 flex justify-center">
-                                    <img
+                                    <Image
+                                      width={160}
+                                      height={160}
                                       src="/images/barcode.png"
                                       className="w-40 h-40"
+                                      alt="barcode-ticket"
                                     />
                                   </div>
                                 </div>
