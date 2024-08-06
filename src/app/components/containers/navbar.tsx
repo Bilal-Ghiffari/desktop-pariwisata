@@ -6,6 +6,7 @@ import NavItem from "./navitem";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import SwitchTranslation from "./SwitchTranslation";
+import { Menu, X } from "lucide-react";
 
 interface INavBarProps {
   navbg?: boolean;
@@ -48,39 +49,12 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({
             />
           </svg>
         </div>
-        <a
-          href="#"
-          onClick={() => setIsOpen(!isOpen)}
-          id="btn-dropdown"
-          className="lg:hidden flex flex-row items-center p-2 border border-gray-300 rounded-full"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M3 7H21"
-              stroke="#292D32"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M3 12H21"
-              stroke="#292D32"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M3 17H21"
-              stroke="#292D32"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </a>
+        {isOpen ? (
+          <X className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} />
+        ) : (
+          <Menu className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} />
+        )}
+
         <ul className=" flex-row gap-x-14 hidden lg:flex">
           <NavItem link="/" name={t("navbar.nav-item-1")} navbg={navbg} />
           <NavItem link="/about" name={t("navbar.nav-item-2")} navbg={navbg} />
@@ -116,11 +90,11 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({
         id="dropdown-menu"
         onClick={() => setIsOpen(!isOpen)}
         className={cn([
-          "lg:hidden flex fixed  flex-col gap-y-16 left-0 top-[60px] w-screen p-12  z-20",
+          "lg:hidden flex fixed flex-col gap-y-16 left-0 top-[60px] w-screen p-12  z-20",
           !isOpen && "hidden",
         ])}
       >
-        <div className="flex flex-col md:flex-row gap-x-24 gap-y-10 z-10 bg-white p-7 shadow-lg shadow-indigo-950/10 rounded-2xl">
+        <div className="flex flex-col md:flex-row gap-x-24 gap-y-10 z-40 bg-white p-7 shadow-lg shadow-indigo-950/10 rounded-2xl">
           <div className="flex flex-col gap-y-4 ">
             <ul className="flex flex-col gap-y-5">
               <NavItem link="/" name="Home" navbg={navbg} />

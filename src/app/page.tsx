@@ -29,7 +29,7 @@ export default function Home() {
     <>
       <div className="md:h-full h-[700px]">
         <div className="w-full h-[704px] relative">
-          <div className="absolute inset-0 bg-black opacity-30 z-10"></div>
+          <div className="absolute inset-0 bg-black opacity-30"></div>
           <img
             src="/images/image 4.png"
             className="w-full h-full object-cover object-center"

@@ -18,8 +18,7 @@ const NavItem: React.FunctionComponent<INavItemProps> = ({
       <Link
         href={link}
         className={cn([
-          "font-medium hover:transition hover:duration-700 hover:text-[#175399]",
-          navbg ? "text-[#FFFFFF]/70" : "text-[#9C9C9C]",
+          "font-medium hover:transition hover:duration-700 hover:text-[#175399] text-[#9C9C9C]",
         ])}
       >
         {name}
