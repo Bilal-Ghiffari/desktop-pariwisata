@@ -22,6 +22,16 @@ const initialState: ActionResult = {
   errorTitle: "",
 };
 
+const AllCountry = [
+  { label: "Palestine", value: "palestine" },
+  { label: "Jamaica", value: "jamaica" },
+  { label: "Las Vegas", value: "las vegas" },
+  { label: "Arab Saudi", value: "arab saudi" },
+  { label: "Indonesia Raya", value: "indonesia" },
+  { label: "Timor Leste", value: "timor leste" },
+  { label: "Papua Nugini", value: "papua nugini" },
+];
+
 const FormPassagerDetailMobile: React.FunctionComponent<
   IFormPassagerDetailMobileProps
 > = (props) => {
@@ -52,6 +62,21 @@ const FormPassagerDetailMobile: React.FunctionComponent<
             required
           />
         </div>
+      </div>
+      <div className="flex flex-col gap-2 w-full">
+        <Label htmlFor="tipePenumpang">Kewarganegaraan</Label>
+        <Select>
+          <SelectTrigger className="px-[16px] py-3 h-full">
+            <SelectValue placeholder="Pilih Tipe Penumpang" />
+          </SelectTrigger>
+          <SelectContent>
+            {AllCountry.map((item, i) => (
+              <SelectItem key={item.label + i} value={item.value}>
+                {item.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
       <div className="flex flex-col gap-2 w-full">
         <Label htmlFor="fullName">Nama Lengkap</Label>

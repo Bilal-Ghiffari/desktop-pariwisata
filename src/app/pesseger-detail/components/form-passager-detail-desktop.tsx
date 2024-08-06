@@ -28,9 +28,19 @@ const initialState: ActionResult = {
   errorDesc: [],
 };
 
-const AllCountry = [
+const AllTypeId = [
   { label: "KTP", value: "ktp" },
   { label: "Passpor", value: "passpor" },
+];
+
+const AllCountry = [
+  { label: "Palestine", value: "palestine" },
+  { label: "Jamaica", value: "jamaica" },
+  { label: "Las Vegas", value: "las vegas" },
+  { label: "Arab Saudi", value: "arab saudi" },
+  { label: "Indonesia Raya", value: "indonesia" },
+  { label: "Timor Leste", value: "timor leste" },
+  { label: "Papua Nugini", value: "papua nugini" },
 ];
 
 const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
@@ -66,7 +76,7 @@ const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
                 <SelectValue placeholder="Tipe ID" />
               </SelectTrigger>
               <SelectContent>
-                {AllCountry.map((item, i) => (
+                {AllTypeId.map((item, i) => (
                   <SelectItem key={item.label + i} value={item.value}>
                     {item.label}
                   </SelectItem>
@@ -98,6 +108,20 @@ const PassegerInput: React.FunctionComponent<IPassegerInputProps> = ({
                     <SelectItem value="bayi">Bayi</SelectItem>
                   )}
                 </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex flex-row gap-4">
+            <Select onValueChange={(val) => setTypeID(id, val)}>
+              <SelectTrigger className="px-[16px] py-3 h-full">
+                <SelectValue placeholder="Kewarganegaraan" />
+              </SelectTrigger>
+              <SelectContent>
+                {AllCountry.map((item, i) => (
+                  <SelectItem key={item.label + i} value={item.value}>
+                    {item.label}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
