@@ -50,9 +50,15 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({
           </svg>
         </div>
         {isOpen ? (
-          <X className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} />
+          <X
+            className="w-6 h-6 md:hidden block"
+            onClick={() => setIsOpen(!isOpen)}
+          />
         ) : (
-          <Menu className="w-6 h-6" onClick={() => setIsOpen(!isOpen)} />
+          <Menu
+            className="w-6 h-6 md:hidden block"
+            onClick={() => setIsOpen(!isOpen)}
+          />
         )}
 
         <ul className=" flex-row gap-x-14 hidden lg:flex">
@@ -67,6 +73,7 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({
         </ul>
         <div className="hidden lg:flex flex-row gap-x-3 items-center">
           <SwitchTranslation />
+          <p className="text-white font-medium">{t("title")}</p>
           <Link
             href="/log-in"
             className={cn([
