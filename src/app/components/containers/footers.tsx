@@ -93,7 +93,7 @@ const Footers: React.FunctionComponent<IFootersProps> = ({ className }) => {
         </div>
         <div className="flex flex-col mb-4 sm:mb-0">
           <h2 className="text-lg font-semibold text-white">
-            {t("footers.contact")}
+            {t("footers.title-3")}
           </h2>
           <div className="*:text-white/40">
             <p>corp@pari.co.id</p>
@@ -106,7 +106,7 @@ const Footers: React.FunctionComponent<IFootersProps> = ({ className }) => {
         </div>
         <div className="flex flex-col mb-4 sm:mb-0">
           <h2 className="text-lg font-semibold text-white">
-            {t("footers.contact")}
+            {t("footers.title-4")}
           </h2>
           <div className="flex flex-row gap-x-3 mt-4">
             <Facebook className="text-white" />
