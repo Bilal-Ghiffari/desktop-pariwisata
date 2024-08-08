@@ -13,13 +13,35 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import Footers from "../components/containers/footers";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import Image from "next/image";
 
 interface ICheckOutProps {}
 
 const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
   const router = useRouter();
+  const accountNumber = "26215701000435301";
+  const [textClipboard, setTextClipboard] = React.useState<string>("");
+
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(accountNumber)
+      .then(() => {
+        setTextClipboard("Account number copied to clipboard!");
+        TextClipBoard;
+      })
+      .catch((err) => {
+        console.error("Failed to copy!", err);
+      });
+  };
+
+  const TextClipBoard = React.useEffect(() => {
+    const timeOutId = setTimeout(() => {
+      setTextClipboard("");
+    }, 2000);
+    return () => clearTimeout(timeOutId);
+  }, [textClipboard]);
+
   return (
     <>
       <div className="md:hidden block z-10 bg-gradient-to-r from-cyan-500 h-max to-blue-500 w-full shadow-lg  sticky top-0">
@@ -174,24 +196,30 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
             <div className="flex justify-between w-full bg-[#3079D9]/5 p-3 rounded-[12px]">
               <h3 className="font-semibold text-sm">26215 701 000435301</h3>
               <div className="flex flex-row gap-2">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M7 6H6C4.34315 6 3 7.34315 3 9V19C3 20.6569 4.34315 22 6 22H14C15.6569 22 17 20.6569 17 19V18H15V19C15 19.5523 14.5523 20 14 20H6C5.44772 20 5 19.5523 5 19V9C5 8.44772 5.44772 8 6 8H7V6Z"
-                    fill="#3079D9"
-                  />
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M20.9902 7C20.9967 7.08042 21 7.16136 21 7.24264V15C21 16.6569 19.6569 18 18 18H10C8.34315 18 7 16.6569 7 15V5C7 3.34315 8.34315 2 10 2H15.7574C15.8386 2 15.9196 2.0033 16 2.00982V2L16.0107 2.01071C16.7136 2.07025 17.3761 2.3761 17.8787 2.87868L20.1213 5.12132C20.6239 5.6239 20.9298 6.28645 20.9893 6.98929L21 7H20.9902ZM18 16H10C9.44772 16 9 15.5523 9 15V5C9 4.44772 9.44772 4 10 4H15.7574C15.8399 4 15.9213 4.01019 16 4.02988V5C16 6.10457 16.8954 7 18 7H18.9701C18.9898 7.07871 19 7.16015 19 7.24264V15C19 15.5523 18.5523 16 18 16Z"
-                    fill="#3079D9"
-                  />
-                </svg>
+                <button onClick={handleCopy}>
+                  {textClipboard.length > 0 ? (
+                    <Check className="w-6 h-6" />
+                  ) : (
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M7 6H6C4.34315 6 3 7.34315 3 9V19C3 20.6569 4.34315 22 6 22H14C15.6569 22 17 20.6569 17 19V18H15V19C15 19.5523 14.5523 20 14 20H6C5.44772 20 5 19.5523 5 19V9C5 8.44772 5.44772 8 6 8H7V6Z"
+                        fill="#3079D9"
+                      />
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M20.9902 7C20.9967 7.08042 21 7.16136 21 7.24264V15C21 16.6569 19.6569 18 18 18H10C8.34315 18 7 16.6569 7 15V5C7 3.34315 8.34315 2 10 2H15.7574C15.8386 2 15.9196 2.0033 16 2.00982V2L16.0107 2.01071C16.7136 2.07025 17.3761 2.3761 17.8787 2.87868L20.1213 5.12132C20.6239 5.6239 20.9298 6.28645 20.9893 6.98929L21 7H20.9902ZM18 16H10C9.44772 16 9 15.5523 9 15V5C9 4.44772 9.44772 4 10 4H15.7574C15.8399 4 15.9213 4.01019 16 4.02988V5C16 6.10457 16.8954 7 18 7H18.9701C18.9898 7.07871 19 7.16015 19 7.24264V15C19 15.5523 18.5523 16 18 16Z"
+                        fill="#3079D9"
+                      />
+                    </svg>
+                  )}
+                </button>
               </div>
             </div>
             <div className="flex flex-col gap-y-2">
@@ -333,24 +361,30 @@ const CheckOut: React.FunctionComponent<ICheckOutProps> = (props) => {
                 <div className="flex justify-between w-1/2 bg-[#3079D9]/5 p-3 rounded-[12px]">
                   <h3 className="font-semibold text-sm">26215 701 000435301</h3>
                   <div className="flex flex-row gap-2">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M7 6H6C4.34315 6 3 7.34315 3 9V19C3 20.6569 4.34315 22 6 22H14C15.6569 22 17 20.6569 17 19V18H15V19C15 19.5523 14.5523 20 14 20H6C5.44772 20 5 19.5523 5 19V9C5 8.44772 5.44772 8 6 8H7V6Z"
-                        fill="#3079D9"
-                      />
-                      <path
-                        fillRule="evenodd"
-                        clipRule="evenodd"
-                        d="M20.9902 7C20.9967 7.08042 21 7.16136 21 7.24264V15C21 16.6569 19.6569 18 18 18H10C8.34315 18 7 16.6569 7 15V5C7 3.34315 8.34315 2 10 2H15.7574C15.8386 2 15.9196 2.0033 16 2.00982V2L16.0107 2.01071C16.7136 2.07025 17.3761 2.3761 17.8787 2.87868L20.1213 5.12132C20.6239 5.6239 20.9298 6.28645 20.9893 6.98929L21 7H20.9902ZM18 16H10C9.44772 16 9 15.5523 9 15V5C9 4.44772 9.44772 4 10 4H15.7574C15.8399 4 15.9213 4.01019 16 4.02988V5C16 6.10457 16.8954 7 18 7H18.9701C18.9898 7.07871 19 7.16015 19 7.24264V15C19 15.5523 18.5523 16 18 16Z"
-                        fill="#3079D9"
-                      />
-                    </svg>
+                    <button onClick={handleCopy}>
+                      {textClipboard.length > 0 ? (
+                        <Check className="w-6 h-6" />
+                      ) : (
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7 6H6C4.34315 6 3 7.34315 3 9V19C3 20.6569 4.34315 22 6 22H14C15.6569 22 17 20.6569 17 19V18H15V19C15 19.5523 14.5523 20 14 20H6C5.44772 20 5 19.5523 5 19V9C5 8.44772 5.44772 8 6 8H7V6Z"
+                            fill="#3079D9"
+                          />
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M20.9902 7C20.9967 7.08042 21 7.16136 21 7.24264V15C21 16.6569 19.6569 18 18 18H10C8.34315 18 7 16.6569 7 15V5C7 3.34315 8.34315 2 10 2H15.7574C15.8386 2 15.9196 2.0033 16 2.00982V2L16.0107 2.01071C16.7136 2.07025 17.3761 2.3761 17.8787 2.87868L20.1213 5.12132C20.6239 5.6239 20.9298 6.28645 20.9893 6.98929L21 7H20.9902ZM18 16H10C9.44772 16 9 15.5523 9 15V5C9 4.44772 9.44772 4 10 4H15.7574C15.8399 4 15.9213 4.01019 16 4.02988V5C16 6.10457 16.8954 7 18 7H18.9701C18.9898 7.07871 19 7.16015 19 7.24264V15C19 15.5523 18.5523 16 18 16Z"
+                            fill="#3079D9"
+                          />
+                        </svg>
+                      )}
+                    </button>
                   </div>
                 </div>
               </div>
