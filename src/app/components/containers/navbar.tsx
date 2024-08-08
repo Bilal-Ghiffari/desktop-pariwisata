@@ -49,17 +49,34 @@ const NavBar: React.FunctionComponent<INavBarProps> = ({
             />
           </svg>
         </div>
-        {isOpen ? (
-          <X
-            className="w-6 h-6 md:hidden block"
-            onClick={() => setIsOpen(!isOpen)}
-          />
-        ) : (
-          <Menu
-            className="w-6 h-6 md:hidden block"
-            onClick={() => setIsOpen(!isOpen)}
-          />
-        )}
+        <div className="flex items-center gap-x-3 md:hidden">
+          <div className="flex gap-x-3 items-center mr-3">
+            <SwitchTranslation />
+            <p
+              className={cn(
+                "font-medium",
+                navbg ? "text-white " : "text-black"
+              )}
+            >
+              {t("title")}
+            </p>
+          </div>
+          {isOpen ? (
+            <div className="flex justify-center items-center bg-[#175399] p-[10px] rounded-full">
+              <X
+                className="w-6 h-6 md:hidden block text-white"
+                onClick={() => setIsOpen(!isOpen)}
+              />
+            </div>
+          ) : (
+            <div className="flex justify-center items-center bg-[#175399] p-[10px] rounded-full">
+              <Menu
+                className="w-6 h-6 md:hidden block text-white"
+                onClick={() => setIsOpen(!isOpen)}
+              />
+            </div>
+          )}
+        </div>
 
         <ul className=" flex-row gap-x-14 hidden lg:flex">
           <NavItem link="/" name={t("navbar.nav-item-1")} navbg={navbg} />

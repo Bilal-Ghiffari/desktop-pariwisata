@@ -19,13 +19,9 @@ export default function SwitchTranslation({}: Props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="icon"
-          className="bg-[#175399] hover:bg-[#175399] border-none focus-visible:ring-0"
-        >
-          <Globe className="w-4 h-4 text-white" />
-        </Button>
+        <div className="flex justify-center items-center bg-[#175399] rounded-full p-[10px]">
+          <Globe className="w-5 h-5 text-white" />
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>{t("select-lang")}</DropdownMenuLabel>
