@@ -31,8 +31,8 @@ export default function Home() {
         <div className="w-full h-[704px] relative">
           <div className="absolute inset-0 bg-black opacity-30"></div>
           <img
-            src="/images/image 4.png"
-            className="w-full h-full object-cover object-center"
+            src="/images/ship.jpg"
+            className="w-full h-full object-center"
             alt="image-hero-pariwisata"
           />
           <div className="container mx-auto absolute top-0 left-0 right-0 z-20">
